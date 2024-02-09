@@ -9,7 +9,7 @@ public class MouvementJoueur : MonoBehaviour
     private readonly float VITESSE_COURSE = 4f;
     private readonly float ACCELERATION = 2f;
     [SerializeField] private Rigidbody Joueur;
-    [SerializeField] private Camera CameraJoueur;
+    
     
     
     void Start()
@@ -43,7 +43,7 @@ public class MouvementJoueur : MonoBehaviour
 
 
         //Decide la direction finale du joueur
-      //  DirectionMouvement = Quaternion.EulerRotation(Camera.);
+        DirectionMouvement = Quaternion.EulerRotation(Joueur.transform.forward) * DirectionMouvement;
 
         //ajoute la nouvelle vitesse au joueur
         Joueur.velocity = Joueur.velocity + DirectionMouvement * ACCELERATION;
