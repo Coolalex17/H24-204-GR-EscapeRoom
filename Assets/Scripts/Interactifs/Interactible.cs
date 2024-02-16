@@ -4,7 +4,9 @@ using UnityEngine;
 
 public interface Interactible
 {
-    public void InteractionGauche();
-    public void InteractionDroite();
+    public void InteractionGauche(Transform Joueur);
+
+    public void InteractionDroite(Transform Joueur);
+
 
 }

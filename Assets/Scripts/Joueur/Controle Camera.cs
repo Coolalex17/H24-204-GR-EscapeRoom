@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEditor;
 using UnityEngine;
 
@@ -33,17 +34,16 @@ public class NewBehaviourScript : MonoBehaviour
             
             if(Physics.Raycast(CameraJoueur.transform.position,CameraJoueur.transform.TransformDirection(Vector3.forward) * DISTANCE_INTERACTION,out HitGauche)) {
                 if(HitGauche.transform.GetComponent<Interactible>() != null) {
-                    HitGauche.transform.GetComponent<Interactible>().InteractionGauche();
+                    HitGauche.transform.GetComponent<Interactible>().InteractionGauche(Joueur);
                 }
 
             }
         }
         if(Input.GetMouseButtonDown(1)) {
             RaycastHit HitDroit;
-            Debug.DrawRay(CameraJoueur.transform.position, CameraJoueur.transform.TransformDirection(Vector3.forward) * DISTANCE_INTERACTION);
             if (Physics.Raycast(CameraJoueur.transform.position, CameraJoueur.transform.TransformDirection(Vector3.forward) * DISTANCE_INTERACTION,out HitDroit)) {
                 if(HitDroit.transform.GetComponent<Interactible>() != null) {
-                   HitDroit.transform.GetComponent<Interactible>().InteractionDroite();
+                   HitDroit.transform.GetComponent<Interactible>().InteractionDroite(Joueur);
 
                 }
             }

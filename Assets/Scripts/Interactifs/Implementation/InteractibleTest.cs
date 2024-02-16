@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class InteractibleTest : MonoBehaviour ,Interactible
 {
-    public void InteractionDroite() {
+    public void InteractionDroite(Transform Joueur) {
         Debug.Log("Click droit");
     }
 
-    public void InteractionGauche() {
+    public void InteractionGauche(Transform Joueur) {
         Debug.Log("Click gauche");
     }
 
