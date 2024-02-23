@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:GroupBox name="ContenantTimer" style="-unity-text-align: upper-left;">
+        <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Timer" enable-rich-text="false" style="-unity-text-align: middle-center;" />
+    </ui:GroupBox>
+    <ui:GroupBox name="ContenantInventaire" style="-unity-text-align: middle-left; right: auto; align-self: flex-start; align-items: flex-start; flex-wrap: wrap;" />
+</ui:UXML>
