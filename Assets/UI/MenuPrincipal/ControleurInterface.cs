@@ -25,8 +25,9 @@ public class ControleurInterface : MonoBehaviour
 
     public void BtnParametres()
     {
-       
-        SceneManager.LoadScene("MenuOption");
+        //It grabs the number of my current scene
+        PlayerPrefs.SetInt("SavedScene", SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("MenuParametres");
     }
 
     public void BtnQuitter()
