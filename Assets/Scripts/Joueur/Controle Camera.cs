@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEditor;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 public class NewBehaviourScript : MonoBehaviour
 {
@@ -17,6 +18,37 @@ public class NewBehaviourScript : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
     }
+    private void Update()
+    {
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit HitGauche;
+
+            if (Physics.Raycast(CameraJoueur.transform.position, CameraJoueur.transform.TransformDirection(Vector3.forward) * DISTANCE_INTERACTION, out HitGauche))
+            {
+                if (HitGauche.transform.GetComponent<Interactible>() != null)
+                {
+                    HitGauche.transform.GetComponent<Interactible>().InteractionGauche(Joueur);
+                }
+
+            }
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            Debug.Log("RightCLik");
+            RaycastHit HitDroit;
+            if (Physics.Raycast(CameraJoueur.transform.position, CameraJoueur.transform.TransformDirection(Vector3.forward) * DISTANCE_INTERACTION, out HitDroit))
+            {
+                if (HitDroit.transform.GetComponent<Interactible>() != null)
+                {
+                    HitDroit.transform.GetComponent<Interactible>().InteractionDroite(Joueur);
+
+                }
+            }
+        }
+
+    }
     void FixedUpdate()
     {
 
@@ -28,25 +60,6 @@ public class NewBehaviourScript : MonoBehaviour
 
         transform.localRotation = Quaternion.Euler(RotationVerticale,0f, 0f);
 
-        if(Input.GetMouseButtonDown(0)) {
-            RaycastHit HitGauche;
-            
-            if(Physics.Raycast(CameraJoueur.transform.position,CameraJoueur.transform.TransformDirection(Vector3.forward) * DISTANCE_INTERACTION,out HitGauche)) {
-                if(HitGauche.transform.GetComponent<Interactible>() != null) {
-                    HitGauche.transform.GetComponent<Interactible>().InteractionGauche(Joueur);
-                }
-
-            }
-        }
-        if(Input.GetMouseButtonDown(1)) {
-            RaycastHit HitDroit;
-            if (Physics.Raycast(CameraJoueur.transform.position, CameraJoueur.transform.TransformDirection(Vector3.forward) * DISTANCE_INTERACTION,out HitDroit)) {
-                if(HitDroit.transform.GetComponent<Interactible>() != null) {
-                   HitDroit.transform.GetComponent<Interactible>().InteractionDroite(Joueur);
-
-                }
-            }
-        }
 
     }
 }
