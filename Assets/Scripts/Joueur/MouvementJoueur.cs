@@ -8,18 +8,31 @@ public class MouvementJoueur : MonoBehaviour
     private readonly float VITESSE_COURSE = 4f;
     private readonly float ACCELERATION = 2f;
     [SerializeField] private Rigidbody Joueur;
-    [SerializeField] private Camera CameraJoueur;
-    
+    [SerializeField] private Camera cameraJoueur;
+    private bool mouvementPermi;
     
     
     void Start()
     {
-        
+        mouvementPermi = true;
     }
    
     void FixedUpdate()
     {
-        BoujerJoueur();
+        if (mouvementPermi)
+        {
+            BoujerJoueur();
+        }
+    }
+    public void StopperMouvement() { 
+        mouvementPermi=false;
+        Joueur.velocity = Vector3.zero;
+        cameraJoueur.GetComponent<ControleCamera>().stopperCamera();
+    }
+    public void demarerJoueur()
+    {
+        mouvementPermi = true;
+        cameraJoueur.GetComponent<ControleCamera>().partirCamera();
     }
     private float ObtenirVitesseMax()
     {
