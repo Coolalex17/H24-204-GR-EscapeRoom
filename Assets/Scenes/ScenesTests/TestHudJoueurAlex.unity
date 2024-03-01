@@ -1316,7 +1316,7 @@ GameObject:
   - component: {fileID: 1370706717}
   - component: {fileID: 1370706716}
   m_Layer: 0
-  m_Name: Projectile
+  m_Name: LanceurProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1460,6 +1460,7 @@ MonoBehaviour:
   cameraJeuPhysique: {fileID: 72196519}
   conteneurProjectiles: {fileID: 2072733145}
   fleche: {fileID: 1057407051}
+  projectile: {fileID: 0}
 --- !u!1 &1498758430
 GameObject:
   m_ObjectHideFlags: 0
