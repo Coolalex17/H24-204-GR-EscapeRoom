@@ -2,23 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Audio;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class MenuParametres : MonoBehaviour
 {
 
-    public Slider masterVol, musicVol, effetsVol;
-    public AudioMixer mainAudioMixer;
-    public void ChangeMusiqueVolume()
-    {
-        mainAudioMixer.SetFloat("MusiqueVol", musicVol.value);
-    }
-    public void ChangeMusiqueEffets()
-    {
-        mainAudioMixer.SetFloat("EffetsVol", effetsVol.value);
-    }
 
 
     public Dropdown resolutionDropdown;
@@ -57,11 +47,6 @@ public class MenuParametres : MonoBehaviour
         SceneManager.LoadScene(PlayerPrefs.GetInt("SavedScene"));
     }
 
-    public AudioMixer audioMixer;
-    public void setVolume(float volume)
-    {
-        audioMixer.SetFloat("Volume", volume);
-    }
 
     public void setQualite(int qualityIndex)
     {
