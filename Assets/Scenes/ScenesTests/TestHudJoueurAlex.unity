@@ -152,7 +152,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 1, z: 10}
+  m_LocalScale: {x: 2.5, y: 1, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 83081907}
@@ -255,7 +255,7 @@ Transform:
   m_GameObject: {fileID: 72196516}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -1.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -293,7 +293,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 11
   field of view: 60
   orthographic: 1
   orthographic size: 5
@@ -345,6 +345,7 @@ Transform:
   - {fileID: 36163089}
   - {fileID: 1498758431}
   - {fileID: 2072733145}
+  - {fileID: 1132518373}
   m_Father: {fileID: 1456625585}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!850595691 &372320887
@@ -1232,12 +1233,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1132518372}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 100, y: 100, z: 100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1456625585}
+  m_Father: {fileID: 83081907}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1132518374
 MonoBehaviour:
@@ -1435,11 +1436,9 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1583260549}
-  - {fileID: 1132518373}
   - {fileID: 83081907}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1458,9 +1457,9 @@ MonoBehaviour:
   UIJeu: {fileID: 1132518374}
   cameraJoueur: {fileID: 925794558}
   cameraJeuPhysique: {fileID: 72196519}
+  parentJeu: {fileID: 83081906}
   conteneurProjectiles: {fileID: 2072733145}
   fleche: {fileID: 1057407051}
-  projectile: {fileID: 0}
 --- !u!1 &1498758430
 GameObject:
   m_ObjectHideFlags: 0
@@ -1479,7 +1478,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1498758431
 Transform:
   m_ObjectHideFlags: 0
@@ -1672,7 +1671,7 @@ Transform:
   m_LocalScale: {x: 2, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1456625585}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1583260550
 MonoBehaviour:
@@ -1991,4 +1990,5 @@ SceneRoots:
   - {fileID: 2005651642}
   - {fileID: 986006031}
   - {fileID: 1677142999}
+  - {fileID: 1583260549}
   - {fileID: 1456625585}

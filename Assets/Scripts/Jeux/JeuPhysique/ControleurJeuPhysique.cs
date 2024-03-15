@@ -9,6 +9,7 @@ public class ControleurJeuPhysique : MonoBehaviour
     [SerializeField] private UIDocument UIJeu;
     [SerializeField] private Camera cameraJoueur;
     [SerializeField] private Camera cameraJeuPhysique;
+    [SerializeField] private GameObject parentJeu;
 
     [SerializeField] private Transform conteneurProjectiles;
     [SerializeField] private Transform fleche;
@@ -20,6 +21,7 @@ public class ControleurJeuPhysique : MonoBehaviour
     private Slider sliderAngle;
     private Button boutonTirer;
     private bool jeuDebute;
+    private float tempsActivationGravitee;
 
     void Start()
     {
@@ -36,11 +38,25 @@ public class ControleurJeuPhysique : MonoBehaviour
     }
     public void debuterJeu()
     {
+
         jeuDebute = true;
         UIJeu.rootVisualElement.Q<GroupBox>("BoiteBoutons").style.visibility = Visibility.Visible;
         cameraJoueur.enabled = false;
         cameraJeuPhysique.enabled = true;
+        float taille = Random.Range(1.5f,3f);
+        planete = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        planete.transform.SetParent(parentJeu.transform);
+
+        //La position pourrait changer si on veut mais jai hard code la position pour le moment
+        planete.transform.localPosition = new Vector3(2, 1, 0);
+        planete.transform.rotation = Quaternion.Euler(90,0,0);
+        planete.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        planete.GetComponent<MeshRenderer>().receiveShadows = false;
+            
+        planete.transform.localScale =new Vector3(planete.transform.localScale.x * taille * 5, planete.transform.localScale.y, planete.transform.localScale.z * taille * 5);
+        gravitee = 0.5f * taille;
     }
+    private GameObject planete;
     private void FixedUpdate()
     {
         if (jeuDebute) {
@@ -57,27 +73,43 @@ public class ControleurJeuPhysique : MonoBehaviour
         
     }
 
-    [SerializeField] private GameObject projectile;
+    private GameObject projectile;
     private bool projectileEnVie;
-    private float vitesseX;
-    private float vitesseY;
+    private Vector3 vitesse;
+    
+    //Le projectile aura une masse de 1 pour simplifier les calculs
     private float gravitee;
     private void bougerProjectile()
     {
-        projectile.transform.position += new Vector3(vitesseX,vitesseY,0)* Time.deltaTime;   
+        if(tempsActivationGravitee < 0)
+        {
+            vitesse = vitesse - gravitee * Time.deltaTime * (projectile.transform.position - planete.transform.position);
+        }
+        else
+        {
+            tempsActivationGravitee -= Time.deltaTime;
+        }
+
+
+        projectile.transform.position += vitesse * Time.deltaTime;
+        
 
     }
-
+    private readonly float DELAI_GRAVITE = 1;
     private void tirer(ClickEvent ev)
     {
+     //   if (projectileEnVie) return;
         projectileEnVie = true;
         projectile = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-        projectile.transform.SetParent(conteneurProjectiles, false);
-        projectile.transform.localPosition = new Vector3(0,2,0);
+        projectile.transform.localScale = new Vector3(0.1f, 0.1f,0.1f);
+        projectile.transform.SetParent(parentJeu.transform, false);
+        projectile.transform.localPosition = conteneurProjectiles.localPosition;
         projectile.transform.rotation = Quaternion.Euler(90, 0, 0);
-        vitesseY = 1;
-        vitesseX = 1;
-        //fleche.gameObject.
+        float angle = Mathf.Deg2Rad * (-sliderAngle.value + 90);
+        float moduleVitesse = Mathf.Sqrt(sliderForce.value / 10) + 30;
+
+        vitesse = new Vector3(moduleVitesse * Mathf.Cos(angle),moduleVitesse * Mathf.Sin(angle),0);
+        tempsActivationGravitee = DELAI_GRAVITE;
     }
 
 }
