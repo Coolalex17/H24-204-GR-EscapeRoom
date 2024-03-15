@@ -19,7 +19,7 @@ public class ControleurUIMenuPause : MonoBehaviour
 
     public void BtnContinuer()
     {
-
+        SceneManager.LoadScene("ScenePrincipale");
     }
 
     public void BtnParametres()
