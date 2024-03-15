@@ -10,7 +10,7 @@ public class ControleurJeuPhysique : MonoBehaviour
     [SerializeField] private Camera cameraJoueur;
     [SerializeField] private Camera cameraJeuPhysique;
     [SerializeField] private GameObject parentJeu;
-
+    [SerializeField] private Material materielVerification;
     [SerializeField] private Transform conteneurProjectiles;
     [SerializeField] private Transform fleche;
 
@@ -22,6 +22,24 @@ public class ControleurJeuPhysique : MonoBehaviour
     private Button boutonTirer;
     private bool jeuDebute;
     private float tempsActivationGravitee;
+
+    private GameObject projectile;
+    private bool projectileEnVie;
+    private Vector3 vitesse;
+
+    private GameObject verificateur;
+
+    private readonly float DELAI_GRAVITE = 1;
+    private readonly float DELAI_VALIDATION = 2;
+    private float tempsValidation;
+    private float taille;
+    private float distanceCorecte;
+    private readonly Vector3 POSITION_PLANETE = new Vector3(2, 1, 0);
+
+    //Le projectile aura une masse de 1 pour simplifier les calculs
+    private float gravitee;
+    
+
 
     void Start()
     {
@@ -38,47 +56,97 @@ public class ControleurJeuPhysique : MonoBehaviour
     }
     public void debuterJeu()
     {
-
+        
         jeuDebute = true;
         UIJeu.rootVisualElement.Q<GroupBox>("BoiteBoutons").style.visibility = Visibility.Visible;
         cameraJoueur.enabled = false;
         cameraJeuPhysique.enabled = true;
-        float taille = Random.Range(1.5f,3f);
+        creerPlanete();
+
+        creerVerificateurDistance();
+    }
+    private void creerVerificateurDistance()
+    {
+        distanceCorecte = Random.Range(15, 40) + planete.transform.localScale.x;
+
+        verificateur = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        verificateur.transform.SetParent(parentJeu.transform);
+
+        //La position pourrait changer si on veut mais jai hard code la position pour le moment
+        verificateur.transform.localPosition = POSITION_PLANETE;
+        verificateur.transform.rotation = Quaternion.Euler(90, 0, 0);
+
+        //Enleve les ombres de lobjet
+        verificateur.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        verificateur.GetComponent<MeshRenderer>().receiveShadows = false;
+        verificateur.GetComponent<MeshRenderer>().material = materielVerification;
+
+        //Change la taille et la gravitee
+        verificateur.transform.localScale = new Vector3(verificateur.transform.localScale.x * distanceCorecte , verificateur.transform.localScale.y/10 , verificateur.transform.localScale.z * distanceCorecte);
+    }
+
+
+    private void creerPlanete()
+    {
+        taille = Random.Range(1.5f, 3f);
+
+
         planete = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
         planete.transform.SetParent(parentJeu.transform);
 
         //La position pourrait changer si on veut mais jai hard code la position pour le moment
-        planete.transform.localPosition = new Vector3(2, 1, 0);
-        planete.transform.rotation = Quaternion.Euler(90,0,0);
+        planete.transform.localPosition = POSITION_PLANETE;
+        planete.transform.rotation = Quaternion.Euler(90, 0, 0);
+
+        //Enleve les ombres de lobjet
         planete.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
         planete.GetComponent<MeshRenderer>().receiveShadows = false;
-            
-        planete.transform.localScale =new Vector3(planete.transform.localScale.x * taille * 5, planete.transform.localScale.y, planete.transform.localScale.z * taille * 5);
+
+        //Change la taille et la gravitee
+        planete.transform.localScale = new Vector3(planete.transform.localScale.x * taille * 5, planete.transform.localScale.y, planete.transform.localScale.z * taille * 5);
         gravitee = 0.5f * taille;
+
     }
     private GameObject planete;
     private void FixedUpdate()
     {
         if (jeuDebute) {
-            conteneurProjectiles.rotation = Quaternion.Euler(0f, 0f, -sliderAngle.value);
+            conteneurProjectiles.rotation = Quaternion.Euler(0f, 0f, -sliderAngle.value * 1.5f - 20);
             fleche.localScale =new Vector3(1, (sliderForce.value/100) + 0.5f, 1);
             fleche.localPosition = new Vector3(0, (sliderForce.value / 100 + 1.6f) / 2 + 0.2f, 0);
 
             if (projectileEnVie)
             {
                 bougerProjectile();
+                validerCompletion();
             }
         }
         
         
     }
+    private void validerCompletion()
+    {
+        float distance = Mathf.Abs((projectile.transform.position - planete.transform.position).magnitude);
+        Debug.Log(distance);
 
-    private GameObject projectile;
-    private bool projectileEnVie;
-    private Vector3 vitesse;
+        if (distance <= (projectile.transform.localScale.x /2 + planete.transform.localScale.x /2)) 
+        {
+            enleverProjectile();
+        }
+        if( distance < distanceCorecte)
+        {
+            tempsValidation += Time.deltaTime;
+
+            if (tempsValidation > DELAI_VALIDATION)   
+            {
+                enleverProjectile();
+            }
+        }
+
+    }
+
     
-    //Le projectile aura une masse de 1 pour simplifier les calculs
-    private float gravitee;
+
     private void bougerProjectile()
     {
         if(tempsActivationGravitee < 0)
@@ -95,21 +163,27 @@ public class ControleurJeuPhysique : MonoBehaviour
         
 
     }
-    private readonly float DELAI_GRAVITE = 1;
+    private void enleverProjectile()
+    {
+        Destroy(projectile);
+        projectile = null;
+        projectileEnVie = false;
+    }
     private void tirer(ClickEvent ev)
     {
-     //   if (projectileEnVie) return;
+        enleverProjectile();
         projectileEnVie = true;
         projectile = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
         projectile.transform.localScale = new Vector3(0.1f, 0.1f,0.1f);
         projectile.transform.SetParent(parentJeu.transform, false);
         projectile.transform.localPosition = conteneurProjectiles.localPosition;
         projectile.transform.rotation = Quaternion.Euler(90, 0, 0);
-        float angle = Mathf.Deg2Rad * (-sliderAngle.value + 90);
-        float moduleVitesse = Mathf.Sqrt(sliderForce.value / 10) + 30;
+        float angle = Mathf.Deg2Rad * (-sliderAngle.value * 1.5f + 70) ;
+        float moduleVitesse = Mathf.Sqrt(sliderForce.value)/5 + 20;
 
         vitesse = new Vector3(moduleVitesse * Mathf.Cos(angle),moduleVitesse * Mathf.Sin(angle),0);
         tempsActivationGravitee = DELAI_GRAVITE;
+        tempsValidation = 0;
     }
 
 }
