@@ -50,11 +50,25 @@ public class Piece : MonoBehaviour
         float x = xGrille;
         float y = yGrille;
 
-        x *= 2f;
-        y *= 2f;
+        float vraieOrigineGrille = -13.55f;
 
-        x += -10f;
-        y += -10f;
+        float tailleCase = 2.7f;
+        float tailleDemieCase = tailleCase / 2;
+
+        x = vraieOrigineGrille + xGrille * tailleCase + tailleDemieCase;
+        y = vraieOrigineGrille + yGrille * tailleCase + tailleDemieCase;
+
+
+        /*
+        x += -13.5f;
+        y += -13.5f;
+
+        x *= 2.7f;
+        y *= 2.7f;
+
+        x += 1.35f;
+        y += 1.35f;
+        */
 
         this.transform.position = new Vector3(x, y, -1.0f);
     }

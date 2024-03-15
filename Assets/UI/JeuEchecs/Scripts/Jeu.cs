@@ -46,15 +46,19 @@ public class Jeu : MonoBehaviour
             SetPosition(joueurNoir[i]);
             SetPosition(joueurBlanc[i]);
         }
+
+
+        PrintZPositionOfPieces();
+
     }
 
     public GameObject Creer(string nom, int x, int y) {
 
-        GameObject objet = Instantiate(pieceDeJeu, new Vector3(0, 0, -1), Quaternion.identity);
+        GameObject objet = Instantiate(pieceDeJeu, new Vector3(0, 0, 0), Quaternion.identity);
         Piece piece = objet.GetComponent<Piece>();
         piece.name = nom;
         piece.SetXGrille(x);
-        piece.SetXGrille(y);
+        piece.SetYGrille(y);
         piece.Activer();
 
         return objet;
@@ -67,5 +71,31 @@ public class Jeu : MonoBehaviour
 
         positions[piece.GetXGrille(), piece.GetYGrille()] = objet;
     }
-    
+
+    void PrintZPositionOfPieces()
+    {
+        foreach (GameObject piece in joueurBlanc)
+        {
+            if (piece != null)
+            {
+                Debug.Log(piece.name + " Z Position: " + piece.transform.position.x);
+                Debug.Log(piece.name + " Z Position: " + piece.transform.position.y);
+                Debug.Log(piece.name + " Z Position: " + piece.transform.position.z);
+
+            }
+        }
+
+        foreach (GameObject piece in joueurNoir)
+        {
+            if (piece != null)
+            {
+                Debug.Log(piece.name + " Z Position: " + piece.transform.position.x);
+                Debug.Log(piece.name + " Z Position: " + piece.transform.position.y);
+                Debug.Log(piece.name + " Z Position: " + piece.transform.position.z);
+
+            }
+        }
+    }
+
+
 }
