@@ -2,40 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.ProBuilder.Shapes;
+using static Inventaire;
 
 public class Door : MonoBehaviour, Interactible
 {
     private Animator anim;
     private bool isOpen = false;
-    private bool entreCollition = false;
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         anim = GetComponent<Animator>();
     }
 
-    /*
-    private void OnTriggerEnter(Collider collider)
-    {
-        entreCollition = true;
-    }
-
-    private void OnTriggerExit(Collider collider)
-    {
-        entreCollition = false;
-    }
-    */
-
     public void InteractionGauche(Transform Joueur)
     {
-        if (!GetIsOpen())
+        if (TestCle(Joueur))
         {
-            OpenDoor();
-        }
-        else
-        {
-            CloseDoor();
+            if (!GetIsOpen())
+            {
+                OpenDoor();
+            }
+            else
+            {
+                CloseDoor();
+            }
         }
     }
 
@@ -47,15 +37,32 @@ public class Door : MonoBehaviour, Interactible
         return isOpen;
     }
 
-public void OpenDoor()
+    public void OpenDoor()
     {
         anim.SetTrigger("Open");
         isOpen = !isOpen;
     }
 
-public void CloseDoor()
+    public void CloseDoor()
     {
         anim.SetTrigger("Close");
         isOpen = !isOpen;
+    }
+
+    private bool TestCle(Transform Joueur)
+    {
+        Inventaire inventaireJoueur = Joueur.GetComponent<Inventaire>();
+        List<Items> list;
+        bool avoirCle = false;
+        list = inventaireJoueur.ObtenirInventaire();
+        for (int i = 0; i < list.Count; i++)
+        {
+            avoirCle = (list[i] == Items.CLEE_PORTE1);
+            if (avoirCle)
+            {
+                i = list.Count;
+            }
+        }
+        return avoirCle;
     }
 }
