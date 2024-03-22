@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Jeu : MonoBehaviour
 {
@@ -46,15 +48,11 @@ public class Jeu : MonoBehaviour
             SetPosition(joueurNoir[i]);
             SetPosition(joueurBlanc[i]);
         }
-
-
-        PrintZPositionOfPieces();
-
     }
 
     public GameObject Creer(string nom, int x, int y) {
 
-        GameObject objet = Instantiate(pieceDeJeu, new Vector3(0, 0, 0), Quaternion.identity);
+        GameObject objet = Instantiate(pieceDeJeu, new Vector3(0, 0, -1), Quaternion.identity);
         Piece piece = objet.GetComponent<Piece>();
         piece.name = nom;
         piece.SetXGrille(x);
@@ -72,30 +70,53 @@ public class Jeu : MonoBehaviour
         positions[piece.GetXGrille(), piece.GetYGrille()] = objet;
     }
 
-    void PrintZPositionOfPieces()
+    public void SetPositionVide(int x, int y)
     {
-        foreach (GameObject piece in joueurBlanc)
-        {
-            if (piece != null)
-            {
-                Debug.Log(piece.name + " Z Position: " + piece.transform.position.x);
-                Debug.Log(piece.name + " Z Position: " + piece.transform.position.y);
-                Debug.Log(piece.name + " Z Position: " + piece.transform.position.z);
+        positions[x, y] = null;
+    }
 
-            }
+    public GameObject GetPositions(int x, int y)
+    {
+        return positions[x, y];
+    }
+
+    public bool IsFinDuJeu()
+    {
+        return finDuJeu;
+    }
+
+    public bool PositionSurGrille(int x, int y)
+    {
+        if (x < 0 || y < 0 || x >= positions.GetLength(0) || y >= positions.GetLength(1)) 
+            return false;
+        return true;
+    }
+
+    public string GetJoueurCourrant()
+    {
+        return joueurCourrant;
+    }
+
+    public void ProchainJoueur()
+    {
+        if (joueurCourrant == "blanc")
+        {
+            joueurCourrant = "noir";
         }
-
-        foreach (GameObject piece in joueurNoir)
+        else
         {
-            if (piece != null)
-            {
-                Debug.Log(piece.name + " Z Position: " + piece.transform.position.x);
-                Debug.Log(piece.name + " Z Position: " + piece.transform.position.y);
-                Debug.Log(piece.name + " Z Position: " + piece.transform.position.z);
-
-            }
+            joueurCourrant = "blanc";
         }
     }
 
+    public void Update()
+    {
+        if (finDuJeu && Input.GetMouseButtonDown(0))
+        {
+            finDuJeu = false;
+
+            SceneManager.LoadScene("SceneJeuEchecs");
+        }
+    }
 
 }
