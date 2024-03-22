@@ -26,7 +26,7 @@ public partial class Inventaire
 
         DictionaireImage.Add(Items.CLEE_PORTE1, Images[0]);
         DictionaireImage.Add(Items.CLEE_PORTE2, Images[1]);
-        
+
 
     }
     public Texture ObtenirImage(Items item)
