@@ -1458,8 +1458,11 @@ MonoBehaviour:
   cameraJoueur: {fileID: 925794558}
   cameraJeuPhysique: {fileID: 72196519}
   parentJeu: {fileID: 83081906}
-  materielVerification: {fileID: 2100000, guid: 429c4bae99737d6478d80305e631f663, type: 2}
   conteneurProjectiles: {fileID: 2072733145}
+  materielVerification: {fileID: 2100000, guid: 429c4bae99737d6478d80305e631f663, type: 2}
+  materielVert: {fileID: 2100000, guid: 3dac1a8e850c78140a5f36d3c4132127, type: 2}
+  materielPlanete: {fileID: 2100000, guid: 54403c1afab17ef4a9788ac85586a5af, type: 2}
+  materielBalle: {fileID: 2100000, guid: b001f0d0344e9924e8443439cfe96a7c, type: 2}
   fleche: {fileID: 1057407051}
 --- !u!1 &1498758430
 GameObject:

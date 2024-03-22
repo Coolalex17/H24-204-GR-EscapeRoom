@@ -18,11 +18,15 @@ public class ControleurJeuPhysique : MonoBehaviour
 
 
     [SerializeField] private Material materielVerification;
+    [SerializeField] private Material materielVert;
+    [SerializeField] private Material materielPlanete;
+    [SerializeField] private Material materielBalle;
 
 
     [SerializeField] private Transform fleche;
 
-   
+
+    private GameObject planete;
 
 
     private Slider sliderForce;
@@ -35,6 +39,7 @@ public class ControleurJeuPhysique : MonoBehaviour
     private Vector3 vitesse;
 
     private GameObject verificateur;
+    private GameObject cercleVert;
 
     private readonly float DELAI_VALIDATION = 5f;
     private float tempsValidation;
@@ -68,8 +73,8 @@ public class ControleurJeuPhysique : MonoBehaviour
         cameraJoueur.enabled = false;
         cameraJeuPhysique.enabled = true;
         creerPlanete();
-
         creerVerificateurDistance();
+        creerCercleVert();
     }
     private void creerVerificateurDistance()
     {
@@ -88,11 +93,34 @@ public class ControleurJeuPhysique : MonoBehaviour
         verificateur.GetComponent<MeshRenderer>().material = materielVerification;
 
         //Change la taille et la gravitee
-        verificateur.transform.localScale = new Vector3(verificateur.transform.localScale.x * distanceValidation, verificateur.transform.localScale.y/10 , verificateur.transform.localScale.z * distanceValidation );
+        verificateur.transform.localScale = new Vector3(verificateur.transform.localScale.x * (distanceValidation + 40), verificateur.transform.localScale.y/10 , verificateur.transform.localScale.z * (distanceValidation + 40) );
 
 
     }
+    private void grandirCerlceVert()
+    {
+        cercleVert.transform.localScale = new Vector3((verificateur.transform.localScale.x) * tempsValidation / DELAI_VALIDATION, 1/ 10.1f,verificateur.transform.localScale.z * tempsValidation/DELAI_VALIDATION);
 
+    }
+    private void creerCercleVert()
+    {
+
+        cercleVert = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        cercleVert.transform.SetParent(parentJeu.transform);
+
+        //La position pourrait changer si on veut mais jai hard code la position pour le moment
+        cercleVert.transform.localPosition = POSITION_PLANETE;
+        cercleVert.transform.rotation = Quaternion.Euler(90, 0, 0);
+
+        //Enleve les ombres de lobjet
+        cercleVert.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        cercleVert.GetComponent<MeshRenderer>().receiveShadows = false;
+        cercleVert.GetComponent<MeshRenderer>().material = materielVert;
+
+  
+        
+        grandirCerlceVert();
+    }
 
     private void creerPlanete()
     {
@@ -109,6 +137,8 @@ public class ControleurJeuPhysique : MonoBehaviour
         //Enleve les ombres de lobjet
         planete.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
         planete.GetComponent<MeshRenderer>().receiveShadows = false;
+        planete.GetComponent<MeshRenderer>().material = materielPlanete;
+
 
         //Change la taille et la gravitee
         planete.transform.localScale = new Vector3(planete.transform.localScale.x * taille * 5, planete.transform.localScale.y, planete.transform.localScale.z * taille * 5);
@@ -117,7 +147,6 @@ public class ControleurJeuPhysique : MonoBehaviour
         gravitee =  2f * taille;
 
     }
-    private GameObject planete;
     private void FixedUpdate()
     {
         if (jeuDebute) {
@@ -145,7 +174,8 @@ public class ControleurJeuPhysique : MonoBehaviour
         {
             enleverProjectile();
         }
-        if( distance*2 < distanceValidation)
+        //Le +10 ajoute une marge derreur au joueur
+        if( distance*2 < distanceValidation + 40)
         {
             tempsValidation += Time.deltaTime;
             Debug.Log(tempsValidation);
@@ -159,6 +189,7 @@ public class ControleurJeuPhysique : MonoBehaviour
             
             tempsValidation -= Time.deltaTime;
         }
+        grandirCerlceVert();
 
     }
 
@@ -169,34 +200,28 @@ public class ControleurJeuPhysique : MonoBehaviour
     private void bougerProjectile()
     {
         //Version 1
-        
+        float distanceAvant = (projectile.transform.position - planete.transform.position).magnitude;
         if(activationGravite < delaiGravite)
         {
             activationGravite += Time.deltaTime;
         }
         else
         {
-          
-            vitesse = vitesse - gravitee * Time.deltaTime * (projectile.transform.position - planete.transform.position);
+                
+              vitesse = vitesse - gravitee * Time.deltaTime * (projectile.transform.position - planete.transform.position);
+
 
         }
-        
-
-
-
-        //Version 2
-        /*
-         
-        //Verifie que le joueur est dans un certain rayon de la planete
-        if(obtenirDistance() < distanceValidation)
-        {
-            vitesse = vitesse - gravitee * Time.deltaTime * (projectile.transform.position - planete.transform.position);
-        }*/
-
-
 
         projectile.transform.position += vitesse * Time.deltaTime;
-        
+
+
+      /*  if (obtenirDistance() > distanceValidation + 4)
+        {
+            projectile.transform.position = planete.transform.position + Vector3.ClampMagnitude(projectile.transform.position - planete.transform.position, Mathf.Max(distanceValidation + 10, distanceAvant));
+
+        }
+      */
     }
     private void enleverProjectile()
     {// Enleve le projectile lorsque necessaire
@@ -225,7 +250,10 @@ public class ControleurJeuPhysique : MonoBehaviour
         float angle = Mathf.Deg2Rad * (-sliderAngle.value * 1.5f + 70) ;
         float moduleVitesse = Mathf.Sqrt(sliderForce.value) * 1.5f + 20;
         vitesse = new Vector3(moduleVitesse * Mathf.Cos(angle),moduleVitesse * Mathf.Sin(angle),0);
-       
+
+        projectile.GetComponent<MeshRenderer>().material = materielBalle;
+
+
         //Reset le temps pour valider le defi et le temps avant lactivation de la gravitee
         tempsValidation = 0;
         activationGravite = 0;
