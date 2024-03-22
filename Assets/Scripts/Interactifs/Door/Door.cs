@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.ProBuilder.Shapes;
 
-public class Door : MonoBehaviour
+public class Door : MonoBehaviour, Interactible
 {
     private Animator anim;
     private bool isOpen = false;
+    private bool entreCollition = false;
 
     // Start is called before the first frame update
     void Start()
@@ -14,37 +15,45 @@ public class Door : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    { /*
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            
-            if (!GetIsOpen())
-            {
-                OpenDoor();
-            }
-            else
-            {
-                CloseDoor();
-            }
-
-        }
-        */
+    /*
+    private void OnTriggerEnter(Collider collider)
+    {
+        entreCollition = true;
     }
+
+    private void OnTriggerExit(Collider collider)
+    {
+        entreCollition = false;
+    }
+    */
+
+    public void InteractionGauche(Transform Joueur)
+    {
+        if (!GetIsOpen())
+        {
+            OpenDoor();
+        }
+        else
+        {
+            CloseDoor();
+        }
+    }
+
+    public void InteractionDroite(Transform Joueur) { }
+
 
     public bool GetIsOpen()
     {
         return isOpen;
     }
 
-    public void OpenDoor()
+public void OpenDoor()
     {
         anim.SetTrigger("Open");
         isOpen = !isOpen;
     }
 
-    public void CloseDoor()
+public void CloseDoor()
     {
         anim.SetTrigger("Close");
         isOpen = !isOpen;
