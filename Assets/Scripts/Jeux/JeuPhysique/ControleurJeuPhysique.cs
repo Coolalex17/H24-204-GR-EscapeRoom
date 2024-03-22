@@ -12,6 +12,7 @@ public class ControleurJeuPhysique : MonoBehaviour
     [SerializeField] private Camera cameraJoueur;
     [SerializeField] private Camera cameraJeuPhysique;
 
+
     //Parents qui seront utilise pour assigner les projectiles et autres objets
     [SerializeField] private GameObject parentJeu;
     [SerializeField] private Transform conteneurProjectiles;
@@ -21,8 +22,8 @@ public class ControleurJeuPhysique : MonoBehaviour
     [SerializeField] private Material materielVert;
     [SerializeField] private Material materielPlanete;
     [SerializeField] private Material materielBalle;
-
-
+    [SerializeField] private ParticleSystem explosion;
+    
     [SerializeField] private Transform fleche;
 
 
@@ -49,6 +50,10 @@ public class ControleurJeuPhysique : MonoBehaviour
 
     //Le projectile aura une masse de 1 pour simplifier les calculs
     private float gravitee;
+
+    [SerializeField] private GameObject Background;
+    private float tempsShake;
+   
     
 
 
@@ -65,9 +70,9 @@ public class ControleurJeuPhysique : MonoBehaviour
 
         boutonTirer.RegisterCallback<ClickEvent>(tirer);
     }
-    public void debuterJeu()
+    public void debuterJeu(MouvementJoueur joueur)
     {
-        
+        joueur.StopperMouvement();
         jeuDebute = true;
         UIJeu.rootVisualElement.Q<GroupBox>("BoiteBoutons").style.visibility = Visibility.Visible;
         cameraJoueur.enabled = false;
@@ -75,6 +80,24 @@ public class ControleurJeuPhysique : MonoBehaviour
         creerPlanete();
         creerVerificateurDistance();
         creerCercleVert();
+        mouvementJoueur = joueur;
+    }
+    private MouvementJoueur mouvementJoueur;
+    private void terminerJeu()
+    {
+        jeuDebute = false;
+        UIJeu.rootVisualElement.Q<GroupBox>("BoiteBoutons").style.visibility = Visibility.Hidden;
+        cameraJoueur.enabled = true;
+        cameraJeuPhysique.enabled = false;
+
+        enleverProjectile();
+        Destroy(planete);
+        Destroy(verificateur);
+        Destroy(cercleVert);
+        mouvementJoueur.demarerJoueur();
+        Debug.Log("Gagne");
+        
+
     }
     private void creerVerificateurDistance()
     {
@@ -151,14 +174,21 @@ public class ControleurJeuPhysique : MonoBehaviour
     {
         if (jeuDebute) {
             conteneurProjectiles.rotation = Quaternion.Euler(0f, 0f, -sliderAngle.value * 1.5f - 20);
-            fleche.localScale =new Vector3(1, (sliderForce.value/100) + 0.5f, 1);
-            fleche.localPosition = new Vector3(0, (sliderForce.value / 100 + 1.6f) / 2 + 0.2f, 0);
+            fleche.localScale =new Vector3(1, (sliderForce.value/200) + 0.5f, 1);
+            fleche.localPosition = new Vector3(0, (sliderForce.value / 200 + 1.6f) / 2 + 0.2f, 0);
 
             if (projectileEnVie)
             {
                 bougerProjectile();
                 validerCompletion();
             }
+            if (tempsShake >0)
+            {
+                ShakeBackground();
+            }
+
+   
+
         }
         
         
@@ -178,10 +208,11 @@ public class ControleurJeuPhysique : MonoBehaviour
         if( distance*2 < distanceValidation + 40)
         {
             tempsValidation += Time.deltaTime;
-            Debug.Log(tempsValidation);
+           
             if (tempsValidation > DELAI_VALIDATION)   
             {
                 enleverProjectile();
+                terminerJeu();
             }
         }
         else if (tempsValidation > 0)
@@ -190,6 +221,7 @@ public class ControleurJeuPhysique : MonoBehaviour
             tempsValidation -= Time.deltaTime;
         }
         grandirCerlceVert();
+
 
     }
 
@@ -257,6 +289,22 @@ public class ControleurJeuPhysique : MonoBehaviour
         //Reset le temps pour valider le defi et le temps avant lactivation de la gravitee
         tempsValidation = 0;
         activationGravite = 0;
+
+        explosion.Play();
+        if (tempsShake <= 0)
+        {
+            tempsShake = 0.5f;
+        }
+
+    }
+    private void ShakeBackground()
+    {
+
+            Background.transform.position = new Vector3(Background.transform.position.x + Mathf.Sin(tempsShake * 5 *  2 * 360 * Mathf.Deg2Rad), Background.transform.position.y, Background.transform.position.z);
+
+        Background.transform.position = new Vector3(Background.transform.position.x , Background.transform.position.y + Mathf.Sin(tempsShake * 4 * 2 *  360 * Mathf.Deg2Rad) * 1.2f, Background.transform.position.z);
+
+        tempsShake -= Time.deltaTime;    
     }
 
 }

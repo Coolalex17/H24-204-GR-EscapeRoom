@@ -13,8 +13,7 @@ public class InteractibleJeuPhysique : MonoBehaviour, Interactible
 
         public void InteractionGauche(Transform Joueur)
         {
-        Joueur.GetComponent<MouvementJoueur>().StopperMouvement();
-        jeuPhysique.debuterJeu();
+        jeuPhysique.debuterJeu(Joueur.GetComponent<MouvementJoueur>());
         }
 
     
