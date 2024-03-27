@@ -33,7 +33,10 @@ public class ControleCamera : MonoBehaviour
 
         if (Physics.Raycast(CameraJoueur.transform.position, CameraJoueur.transform.TransformDirection(Vector3.forward) * DISTANCE_INTERACTION, out Hit) && Hit.transform.GetComponent<Interactible>() != null)
         {
-            imageCurseur.color = new Color32(45, 109, 0, 255);
+            if(imageCurseur != null)
+            {
+                imageCurseur.color = new Color32(45, 109, 0, 255);
+            }
 
             if (Input.GetMouseButtonDown(0))
             {
@@ -44,11 +47,13 @@ public class ControleCamera : MonoBehaviour
                 Hit.transform.GetComponent<Interactible>().InteractionDroite(Joueur);
 
             }
-
         }
         else
         {
-            imageCurseur.color = new Color32(181, 181, 181, 255);
+            if (imageCurseur != null)
+            {
+                imageCurseur.color = new Color32(181, 181, 181, 255);
+            }
 
         }
     }

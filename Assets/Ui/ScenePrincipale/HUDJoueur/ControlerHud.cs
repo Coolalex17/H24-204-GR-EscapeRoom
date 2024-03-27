@@ -16,6 +16,9 @@ public class ControlerHud : MonoBehaviour
     [SerializeField] private Inventaire InventaireJoueur;
     void Start()
     {
+        if (HUDJoueur == null) {
+            return;
+        }
         Timer = HUDJoueur.rootVisualElement.Q<Label>("Timer");
         TempsEcoule = 0;//TODO prendre le temps du fichier de sauvegarde
 
@@ -23,6 +26,12 @@ public class ControlerHud : MonoBehaviour
     }
     void Update()
     {
+        if(HUDJoueur == null)
+        {
+            return;
+        }
+
+       
         ContenantInventaire.Add(new Label { text = "Test" });
         TempsEcoule += Time.deltaTime;
         Timer.text = ( (int)TempsEcoule ).ToString();
