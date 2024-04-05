@@ -25,15 +25,30 @@ public class GrilleDeplacement : MonoBehaviour
 
     private void OnMouseUp()
     {
+
+        controlleur = GameObject.FindGameObjectWithTag("GameController");
+       
+
+        // Check if the move matches the correct move
+        if (reference.GetComponent<Piece>().GetXGrille() == controlleur.GetComponent<Jeu>().GetCorrectMoveStart().x &&
+            reference.GetComponent<Piece>().GetYGrille() == controlleur.GetComponent<Jeu>().GetCorrectMoveStart().y &&
+            matriceX == controlleur.GetComponent<Jeu>().GetCorrectMoveEnd().x && matriceY == controlleur.GetComponent<Jeu>().GetCorrectMoveEnd().y)
+        {
+            controlleur.GetComponent<Jeu>().FinPartie();
+        }
+        else
+        {
+            // Move is incorrect, shake the screen and do not update piece's position
+            StartCoroutine(controlleur.GetComponent<Jeu>().ShakeScreen());
+            return; // Exit the method without making the move
+        }
+
+
         controlleur = GameObject.FindGameObjectWithTag("GameController");
 
         if (attaque)
         {
             GameObject piece = controlleur.GetComponent<Jeu>().GetPositions(matriceX, matriceY);
-
-            if (piece.name == "roi_blanc") controlleur.GetComponent<Jeu>().Gagnant("noir");
-            if (piece.name == "roi_noir") controlleur.GetComponent<Jeu>().Gagnant("blanc");
-
 
             Destroy(piece);
         }

@@ -6,7 +6,8 @@ TagManager:
   tags:
   - GrilleDeplacement
   - TexteGagnant
-  - TexteRecommencer
+  - TexteContinuer
+  - Indice
   layers:
   - Default
   - TransparentFX
