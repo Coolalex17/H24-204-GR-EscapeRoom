@@ -31,6 +31,10 @@ public class GrilleDeplacement : MonoBehaviour
         {
             GameObject piece = controlleur.GetComponent<Jeu>().GetPositions(matriceX, matriceY);
 
+            if (piece.name == "roi_blanc") controlleur.GetComponent<Jeu>().Gagnant("noir");
+            if (piece.name == "roi_noir") controlleur.GetComponent<Jeu>().Gagnant("blanc");
+
+
             Destroy(piece);
         }
 
@@ -62,6 +66,7 @@ public class GrilleDeplacement : MonoBehaviour
     {
         return reference;
     }
+
 
 
 }

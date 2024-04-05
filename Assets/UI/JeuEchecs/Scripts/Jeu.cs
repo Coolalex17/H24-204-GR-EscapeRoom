@@ -119,4 +119,14 @@ public class Jeu : MonoBehaviour
         }
     }
 
+    public void Gagnant(string joueurGagnant)
+    {
+        finDuJeu = true;
+
+        GameObject.FindGameObjectWithTag("TexteGagnant").GetComponent<Text>().enabled = true;
+        GameObject.FindGameObjectWithTag("TexteGagnant").GetComponent<Text>().text = joueurGagnant + " est le gagnant!";
+
+        GameObject.FindGameObjectWithTag("TexteRecommencer").GetComponent<Text>().enabled = true;
+
+    }
 }
