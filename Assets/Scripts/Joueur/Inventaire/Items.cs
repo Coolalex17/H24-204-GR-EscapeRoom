@@ -15,25 +15,10 @@ public partial class Inventaire
         CLEE_PORTE2,
 
     }
-    
-    
-    private Dictionary<Items, Texture> DictionaireImage;
 
-
-    private void AssocierImages()
-    {
-        DictionaireImage = new Dictionary<Items, Texture>();
-
-        DictionaireImage.Add(Items.CLEE_PORTE1, Images[0]);
-        DictionaireImage.Add(Items.CLEE_PORTE2, Images[1]);
-
-
-    }
     public Texture ObtenirImage(Items item)
     {
-        Texture image = null;
-        DictionaireImage.TryGetValue(item, out image);
-        return image;
+        return Images[(int) item];
     }
 
 
