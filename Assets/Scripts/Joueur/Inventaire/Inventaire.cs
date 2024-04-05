@@ -13,7 +13,6 @@ public partial class Inventaire : MonoBehaviour
     void Start()
     {
         ConteneurInventaire = new List<Items>();
-        AssocierImages();
     }
     public List<Items> ObtenirInventaire()
     {
@@ -34,21 +33,20 @@ public partial class Inventaire : MonoBehaviour
             }
         }
         return QuantiteeItems;
-
     }
     public bool EnleverItem(Items item,int Quantitee)
     {
        int QuantiteeRestante = VerifierPossesionItem(item);
        if (QuantiteeRestante < Quantitee)
-        {
+       {
             return false;
-        }
-        for (int i = 0;i < Quantitee; i++)
+       }
+         for (int i = 0;i < Quantitee; i++)
         {
             Debug.Log(ConteneurInventaire.ToArray().Length);
             ConteneurInventaire.Remove(item);
             Debug.Log(ConteneurInventaire.ToArray().Length);
-        }
+       }
        
        
        return true;
