@@ -8,6 +8,8 @@ public class Door : MonoBehaviour, Interactible
 {
     private Animator anim;
     private bool isOpen = false;
+    public Inventaire.Items itemRequis;
+    public int quantiteeItemRequis;
     
     void Start()
     {
@@ -51,23 +53,11 @@ public class Door : MonoBehaviour, Interactible
 
     private bool TestCle(Transform Joueur)
     {
-        /*  Inventaire inventaireJoueur = Joueur.GetComponent<Inventaire>();
-          List<Items> list;
-          bool avoirCle = false;
-          list = inventaireJoueur.ObtenirInventaire();
-          for (int i = 0; i < list.Count; i++)
-          {
-              avoirCle = (list[i] == Items.CLEE_PORTE1);
-              if (avoirCle)
-              {
-                  i = list.Count;
-              }
-          }
-          return avoirCle;*/
 
         Inventaire inventaireJoueur = Joueur.GetComponent<Inventaire>();
-        if (inventaireJoueur.VerifierPossesionItem(Items.CLEE_PORTE1) > 0)
+        if (inventaireJoueur.VerifierPossesionItem(itemRequis) >= quantiteeItemRequis)
         {
+            inventaireJoueur.EnleverItem(itemRequis, quantiteeItemRequis);
             return true;
         }
         return false;
