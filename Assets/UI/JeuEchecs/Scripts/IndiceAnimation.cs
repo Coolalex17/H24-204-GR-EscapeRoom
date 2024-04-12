@@ -14,8 +14,11 @@ public class IndiceAnimation : MonoBehaviour
     private float dureeAnimation = 1f; // Durée de l'animation en secondes
     private Vector3 positionInitiale;
     private bool debutAnimation = false;
-    private float gameEndTime;
+    private float debutTempsAnimation; // Temps du début de l'animation de l'indice
 
+    private float tempsFinDuJeu;
+    private bool stopTextShow = false;
+    private bool getTime = false;
 
     void Start()
     {
@@ -25,12 +28,24 @@ public class IndiceAnimation : MonoBehaviour
 
     void Update()
     {
+        if (controlleur.GetComponent<Jeu>().IsFinDuJeu() && !getTime)
+        {
+            getTime = true;
+            tempsFinDuJeu = Time.time;
+        }
 
-        if (controlleur.GetComponent<Jeu>().IsFinDuJeu() && !debutAnimation)
+        if (controlleur.GetComponent<Jeu>().IsFinDuJeu() && !stopTextShow)
+        {
+            textIndice.GetComponent<Text>().enabled = true;
+            stopTextShow = ShowText();
+        }
+
+
+        if (stopTextShow && !debutAnimation)
         {
             debutAnimation = true;
             textIndice.GetComponent<Text>().enabled = true;
-            gameEndTime = Time.time;
+            debutTempsAnimation = Time.time;
 
         }
 
@@ -41,9 +56,21 @@ public class IndiceAnimation : MonoBehaviour
 
     }
 
+    public bool ShowText()
+    {
+        float tempsTextShow = Time.time - tempsFinDuJeu;
+        Debug.Log(tempsTextShow);
+        if (tempsTextShow >= 1)
+        {
+            textIndice.GetComponent<Text>().enabled = false;
+            return true;
+        }
+        return false;
+    }
+
     public void AnimerTexte()
     {
-        float timeElapsed = Time.time - gameEndTime;
+        float timeElapsed = Time.time - debutTempsAnimation;
         float progress = Mathf.Clamp01(timeElapsed / dureeAnimation);
         float tailleFont = textIndice.GetComponent<Text>().fontSize;
 
