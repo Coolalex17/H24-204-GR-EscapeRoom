@@ -67,6 +67,15 @@ public class Jeu : MonoBehaviour
         }
     }
 
+    public void Update()
+    {
+        if (finDuJeu && Input.GetMouseButtonDown(0))
+        {
+            finDuJeu = false;
+
+            SceneManager.LoadScene(prochaineScene);
+        }
+    }
 
     public void InitialiserJeuDefault()
     {
@@ -247,22 +256,13 @@ public class Jeu : MonoBehaviour
         }
     }
 
-    public void Update()
-    {
-        if (finDuJeu && Input.GetMouseButtonDown(0))
-        {
-            finDuJeu = false;
-
-            SceneManager.LoadScene(prochaineScene);
-        }
-    }
+    
 
     public void FinPartie()
     {
         finDuJeu = true;
 
         GameObject.FindGameObjectWithTag("TexteContinuer").GetComponent<Text>().enabled = true;
-        GameObject.FindGameObjectWithTag("Indice").GetComponent<Text>().enabled = true;
     }
 
     public IEnumerator ShakeScreen(float duration = 0.5f, float magnitude = 0.5f)
