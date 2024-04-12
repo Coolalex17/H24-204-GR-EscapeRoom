@@ -65,11 +65,17 @@ public class ControleCamera : MonoBehaviour
     public void stopperCamera(){//Est utilise lorsque lutilisateur est dans un menu ou a besoin de se servir de sa souris
         cameraPermise = false;
         Cursor.lockState = CursorLockMode.Confined;
-        imageCurseur.color = new Color(0,0,0,0);
+        if(imageCurseur != null)
+        {
+            imageCurseur.color = new Color(0, 0, 0, 0);
+        }
     }
     public void partirCamera(){//Est utilise lorsque lutilisateur quitte un menu ou na plus besoin de se servir de sa souris
         Cursor.lockState = CursorLockMode.Locked;
         cameraPermise = true;
-        imageCurseur.color = new Color32(45, 109, 0, 255);
+        if(imageCurseur != null)
+        {
+            imageCurseur.color = new Color32(45, 109, 0, 255);
+        }
     }
 }

@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 4000010688086050}
   - component: {fileID: 33000012452501076}
   - component: {fileID: 23000010246100540}
+  - component: {fileID: 7744874163363537027}
+  - component: {fileID: 6063431425109996744}
+  - component: {fileID: 979062703002886043}
   m_Layer: 0
   m_Name: Door_Wood
   m_TagString: Untagged
@@ -87,6 +90,62 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7744874163363537027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010055107056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f38678c1ba6b754c9e393a5e5b2af24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemRequis: 0
+  quantiteeItemRequis: 0
+--- !u!95 &6063431425109996744
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010055107056}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bc542d0da145a1a44b0f21322d7f0242, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &979062703002886043
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010055107056}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.2356588, y: 0.2, z: 2.3082967}
+  m_Center: {x: -0.6150995, y: 0.038821753, z: -0.88769007}
 --- !u!1 &1000010346633862
 GameObject:
   m_ObjectHideFlags: 0
