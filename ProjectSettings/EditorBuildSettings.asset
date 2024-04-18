@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SceneJeuEchecs/SceneJeuEchecs3.unity
     guid: ca5b0d62ee4a6754a9f13a635f766af2
+  - enabled: 1
+    path: Assets/Scenes/SceneJeuEchecs/SceneJeuEchecs4.unity
+    guid: 1b9b97cf2ed7009429ab46f20faccd61
   m_configObjects: {}

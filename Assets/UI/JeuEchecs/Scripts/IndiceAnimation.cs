@@ -23,7 +23,7 @@ public class IndiceAnimation : MonoBehaviour
     void Start()
     {
         controlleur = GameObject.FindGameObjectWithTag("GameController");
-        positionInitiale = new Vector3(0, 0, 0);
+        positionInitiale = new Vector3(0, 0, -5f);
     }
 
     void Update()
@@ -59,7 +59,6 @@ public class IndiceAnimation : MonoBehaviour
     public bool ShowText()
     {
         float tempsTextShow = Time.time - tempsFinDuJeu;
-        Debug.Log(tempsTextShow);
         if (tempsTextShow >= 1)
         {
             textIndice.GetComponent<Text>().enabled = false;
