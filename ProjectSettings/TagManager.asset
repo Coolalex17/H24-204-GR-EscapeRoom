@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GameMusique
   - Tableau
+  - Bouton
   layers:
   - Default
   - TransparentFX
