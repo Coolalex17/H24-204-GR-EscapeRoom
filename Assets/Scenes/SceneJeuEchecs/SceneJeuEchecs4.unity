@@ -158,7 +158,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 3}
   m_AnchorMin: {x: 0.36154878, y: 0}
   m_AnchorMax: {x: 0.63539666, y: 0.054259356}
-  m_AnchoredPosition: {x: 422, y: 138.00151}
+  m_AnchoredPosition: {x: 437, y: 128.53003}
   m_SizeDelta: {x: -48.12, y: 175.06}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &103494156
@@ -189,7 +189,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 103494154}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
@@ -215,7 +215,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "CLIQUEZ SUR L'\xC9CRAN POUR PASSER AU PROCHAIN JEU"
+  m_Text: "BRAVO! VOUS AVEZ TROUV\xC9 LE MESSAGE SECRET!\nCLIQUEZ SUR L'\xC9CRAN
+    POUR RETOURNER AU JEU"
 --- !u!222 &103494158
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1053,6 +1054,85 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1206254619
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1206254620}
+  - component: {fileID: 1206254622}
+  - component: {fileID: 1206254621}
+  m_Layer: 5
+  m_Name: TexteTour (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1206254620
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206254619}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1638280358}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.36154878, y: 0}
+  m_AnchorMax: {x: 0.63539666, y: 0.054259356}
+  m_AnchoredPosition: {x: 1.841095, y: 0}
+  m_SizeDelta: {x: 0, y: -0.00000526011}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1206254621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206254619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 3ca1e5bf2cc34264ba552866b0da84b7, type: 3}
+    m_FontSize: 25
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: TOUR DES BLANCS
+--- !u!222 &1206254622
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206254619}
+  m_CullTransparentMesh: 1
 --- !u!1 &1238560627
 GameObject:
   m_ObjectHideFlags: 0
@@ -1475,6 +1555,7 @@ RectTransform:
   - {fileID: 641605433}
   - {fileID: 103494155}
   - {fileID: 1894877283}
+  - {fileID: 1206254620}
   - {fileID: 1238560628}
   - {fileID: 1509690592}
   m_Father: {fileID: 0}
@@ -1573,7 +1654,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1894877282}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
