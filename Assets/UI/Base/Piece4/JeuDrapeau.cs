@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using static UnityEditor.Timeline.TimelinePlaybackControls;
+using UnityEngine.Sprites;
 
 public class JeuDrapeau : MonoBehaviour //ChatGPT
 {
@@ -19,6 +19,7 @@ public class JeuDrapeau : MonoBehaviour //ChatGPT
 
     void Start()
     {
+
         scoreTexte.text = "Score : " + score;
         ProchainDrapeau();
     }
