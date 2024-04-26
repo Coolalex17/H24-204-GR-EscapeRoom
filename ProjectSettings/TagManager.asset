@@ -4,9 +4,15 @@
 TagManager:
   serializedVersion: 2
   tags:
+
+  - GrilleDeplacement
+  - TexteGagnant
+  - TexteContinuer
+  - Indice
   - GameMusique
   - Tableau
   - Bouton
+
   layers:
   - Default
   - TransparentFX
