@@ -1,14 +1,9 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public partial class Inventaire : MonoBehaviour
 {
     private List<Items> ConteneurInventaire;
-    [SerializeField] private Texture[] Images;
 
     void Start()
     {
@@ -18,43 +13,49 @@ public partial class Inventaire : MonoBehaviour
     {
         return ConteneurInventaire;
     }
-
-
-    public int VerifierPossesionItem(Items item)
-    {
+    /// <summary>
+    /// Verifie la quantite d'un type d'item qui est contenu dans l'inventaire
+    /// </summary>
+    /// <param name="item">type d'item dont on veut verifier la quantitee possedee</param>
+    /// <returns>la quantitee qui est contenue  dans l'inventaire</returns>
+    public int VerifierPossesionItem(Items item){
         int QuantiteeItems = 0;
         Items[] InventaireTemp = ConteneurInventaire.ToArray();
-
-        for (int i = 0;i < InventaireTemp.Length; i++)
-        {
-            if (InventaireTemp[i] == item)
-            {
+        for (int i = 0;i < InventaireTemp.Length; i++){
+            if (InventaireTemp[i] == item){
                 QuantiteeItems++;
             }
         }
         return QuantiteeItems;
     }
-    public bool EnleverItem(Items item,int Quantitee)
-    {
+    /// <summary>
+    /// Enleve la quantite voulu du type d'item voulu a linventaire
+    /// Ne doit pas etre utilise pour ajouter des items il faudrait plutot utiliser la fonction AjouterItem
+    /// </summary>
+    /// <param name="item">type d'item qui doit etre enleve</param>
+    /// <param name="Quantitee">Quantite d'items qui doivent etre enleve</param>
+    /// <returns>Return false si l'inventaire ne possede pas la quantitee ditem requis</returns>
+    public bool EnleverItem(Items item,int Quantitee){
        int QuantiteeRestante = VerifierPossesionItem(item);
-       if (QuantiteeRestante < Quantitee)
-       {
+       if (QuantiteeRestante < Quantitee){
             return false;
        }
-         for (int i = 0;i < Quantitee; i++)
-        {
-            Debug.Log(ConteneurInventaire.ToArray().Length);
+         for (int i = 0;i < Quantitee; i++){
             ConteneurInventaire.Remove(item);
-            Debug.Log(ConteneurInventaire.ToArray().Length);
        }
-       
-       
        return true;
     }
-    public void AjouterItem(Items items,int Quantitee)
-    {
-        for (int i = 0;i < Quantitee; i++)
-        {
+    /// <summary>
+    /// Ajoute la quantite voulu du type d'item voulu a linventaire
+    /// Ne doit pas etre utilise pour enlever des items il faudrait plutot utiliser la fonction EnleverItem
+    /// </summary>
+    /// <param name="items">le type d'item qui doit etre enleve</param>
+    /// <param name="Quantitee">Quantite d'item qui doit etre ajoute</param>
+    public void AjouterItem(Items items,int Quantitee){
+        if(Quantitee <= 0){
+            return;
+        }
+        for (int i = 0;i < Quantitee; i++){
             ConteneurInventaire.Add(items);
         }
     }

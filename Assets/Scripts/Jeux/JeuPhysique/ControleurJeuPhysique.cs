@@ -17,13 +17,14 @@ public class ControleurJeuPhysique : MonoBehaviour
     [SerializeField] private GameObject parentJeu;
     [SerializeField] private Transform conteneurProjectiles;
 
-
+    //Materiaux qui sont utilise et seront change au cours du jeu
     [SerializeField] private Material materielVerification;
     [SerializeField] private Material materielVert;
     [SerializeField] private Material materielPlanete;
     [SerializeField] private Material materielBalle;
-    [SerializeField] private ParticleSystem explosion;
+
     
+    [SerializeField] private ParticleSystem explosion;  
     [SerializeField] private Transform fleche;
 
 
@@ -57,9 +58,9 @@ public class ControleurJeuPhysique : MonoBehaviour
     
 
 
-    void Start()
-    {
+    void Start(){
         projectileEnVie = false;
+        //Trouve les elements du UI necessaire au fonctionnement du code
         sliderForce = UIJeu.rootVisualElement.Q<Slider>("SliderForce");
         sliderAngle = UIJeu.rootVisualElement.Q<Slider>("SliderRotation");
         boutonTirer = UIJeu.rootVisualElement.Q<Button>("BoutonTirer");
@@ -70,8 +71,7 @@ public class ControleurJeuPhysique : MonoBehaviour
 
         boutonTirer.RegisterCallback<ClickEvent>(tirer);
     }
-    public void debuterJeu(MouvementJoueur joueur)
-    {
+    public void debuterJeu(MouvementJoueur joueur){
         joueur.StopperMouvement();
         jeuDebute = true;
         UIJeu.rootVisualElement.Q<GroupBox>("BoiteBoutons").style.visibility = Visibility.Visible;
@@ -83,51 +83,35 @@ public class ControleurJeuPhysique : MonoBehaviour
         mouvementJoueur = joueur;
     }
     private MouvementJoueur mouvementJoueur;
-    private void terminerJeu()
-    {
+    private void terminerJeu(){
         jeuDebute = false;
         UIJeu.rootVisualElement.Q<GroupBox>("BoiteBoutons").style.visibility = Visibility.Hidden;
         cameraJoueur.enabled = true;
         cameraJeuPhysique.enabled = false;
-
         enleverProjectile();
         Destroy(planete);
         Destroy(verificateur);
         Destroy(cercleVert);
         mouvementJoueur.demarerJoueur();
-        Debug.Log("Gagne");
-        
-
     }
-    private void creerVerificateurDistance()
-    {
+    private void creerVerificateurDistance(){
         distanceValidation = Random.Range(35, 60) + planete.transform.localScale.x;
-
         verificateur = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
         verificateur.transform.SetParent(parentJeu.transform);
-
         //La position pourrait changer si on veut mais jai hard code la position pour le moment
         verificateur.transform.localPosition = POSITION_PLANETE;
         verificateur.transform.rotation = Quaternion.Euler(90, 0, 0);
-
         //Enleve les ombres de lobjet
         verificateur.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
         verificateur.GetComponent<MeshRenderer>().receiveShadows = false;
         verificateur.GetComponent<MeshRenderer>().material = materielVerification;
-
         //Change la taille et la gravitee
         verificateur.transform.localScale = new Vector3(verificateur.transform.localScale.x * (distanceValidation + 40), verificateur.transform.localScale.y/10 , verificateur.transform.localScale.z * (distanceValidation + 40) );
-
-
     }
-    private void grandirCerlceVert()
-    {
+    private void grandirCerlceVert(){
         cercleVert.transform.localScale = new Vector3((verificateur.transform.localScale.x) * tempsValidation / DELAI_VALIDATION, 1/ 10.1f,verificateur.transform.localScale.z * tempsValidation/DELAI_VALIDATION);
-
     }
-    private void creerCercleVert()
-    {
-
+    private void creerCercleVert(){
         cercleVert = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
         cercleVert.transform.SetParent(parentJeu.transform);
 
@@ -145,11 +129,8 @@ public class ControleurJeuPhysique : MonoBehaviour
         grandirCerlceVert();
     }
 
-    private void creerPlanete()
-    {
+    private void creerPlanete(){//Cree la planete autour de laquelle le joueur devra faire modifier la gravitee et modifie la gravite
         taille = Random.Range(1.5f, 3f);
-
-
         planete = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
         planete.transform.SetParent(parentJeu.transform);
 
@@ -162,98 +143,56 @@ public class ControleurJeuPhysique : MonoBehaviour
         planete.GetComponent<MeshRenderer>().receiveShadows = false;
         planete.GetComponent<MeshRenderer>().material = materielPlanete;
 
-
         //Change la taille et la gravitee
         planete.transform.localScale = new Vector3(planete.transform.localScale.x * taille * 5, planete.transform.localScale.y, planete.transform.localScale.z * taille * 5);
 
-
         gravitee =  2f * taille;
-
     }
-    private void FixedUpdate()
-    {
+    private void FixedUpdate(){
         if (jeuDebute) {
             conteneurProjectiles.rotation = Quaternion.Euler(0f, 0f, -sliderAngle.value * 1.5f - 20);
             fleche.localScale =new Vector3(1, (sliderForce.value/200) + 0.5f, 1);
             fleche.localPosition = new Vector3(0, (sliderForce.value / 200 + 1.6f) / 2 + 0.2f, 0);
-
-            if (projectileEnVie)
-            {
+            if (projectileEnVie){
                 bougerProjectile();
                 validerCompletion();
             }
-            if (tempsShake >0)
-            {
+            if (tempsShake >0){
                 ShakeBackground();
             }
-
-   
-
-        }
-        
-        
+        }   
     }
-    private float obtenirDistance()
-    {
+    private float obtenirDistance(){
         return Mathf.Abs((projectile.transform.position - planete.transform.position).magnitude);
     }
-    private void validerCompletion()
-    {
+    private void validerCompletion(){
         float distance = obtenirDistance();
-        if (distance <= (projectile.transform.localScale.x + planete.transform.localScale.x) * 5) 
-        {
+        if (distance <= (projectile.transform.localScale.x + planete.transform.localScale.x) * 5) {
             enleverProjectile();
         }
-        //Le +10 ajoute une marge derreur au joueur
-        if( distance*2 < distanceValidation + 40)
-        {
-            tempsValidation += Time.deltaTime;
-           
-            if (tempsValidation > DELAI_VALIDATION)   
-            {
+        //Le +40 ajoute une marge derreur au joueur
+        if( distance*2 < distanceValidation + 40){
+            tempsValidation += Time.deltaTime;   
+            if (tempsValidation > DELAI_VALIDATION){
                 enleverProjectile();
                 terminerJeu();
             }
         }
-        else if (tempsValidation > 0)
-        {
-            
+        else if (tempsValidation > 0){   
             tempsValidation -= Time.deltaTime;
         }
         grandirCerlceVert();
-
-
     }
-
-
     private float delaiGravite = 1;
     private float activationGravite;
-
-    private void bougerProjectile()
-    {
-        //Version 1
+    private void bougerProjectile(){
         float distanceAvant = (projectile.transform.position - planete.transform.position).magnitude;
-        if(activationGravite < delaiGravite)
-        {
+        if(activationGravite < delaiGravite){
             activationGravite += Time.deltaTime;
-        }
-        else
-        {
-                
+        }else{
               vitesse = vitesse - gravitee * Time.deltaTime * (projectile.transform.position - planete.transform.position);
-
-
         }
-
         projectile.transform.position += vitesse * Time.deltaTime;
-
-
-      /*  if (obtenirDistance() > distanceValidation + 4)
-        {
-            projectile.transform.position = planete.transform.position + Vector3.ClampMagnitude(projectile.transform.position - planete.transform.position, Mathf.Max(distanceValidation + 10, distanceAvant));
-
-        }
-      */
     }
     private void enleverProjectile()
     {// Enleve le projectile lorsque necessaire
@@ -285,16 +224,16 @@ public class ControleurJeuPhysique : MonoBehaviour
 
         projectile.GetComponent<MeshRenderer>().material = materielBalle;
 
-
         //Reset le temps pour valider le defi et le temps avant lactivation de la gravitee
         tempsValidation = 0;
         activationGravite = 0;
 
+        //Fait des effets visuels
         explosion.Play();
-        if (tempsShake <= 0)
-        {
+        if (tempsShake <= 0){
             tempsShake = 0.5f;
         }
+        //TODO jouer un effet sonore lorsque le joueur tire
 
     }
     private void ShakeBackground()
