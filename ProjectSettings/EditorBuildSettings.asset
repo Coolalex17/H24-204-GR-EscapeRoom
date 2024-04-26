@@ -23,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MenuPause.unity
     guid: 26234d679908de84883caeb87dc0e925
+  - enabled: 1
+    path: Assets/Scenes/3emJeu.unity
+    guid: 566b163e1843e4936a1834c58c2517de
+  - enabled: 1
+    path: Assets/Scenes/3emJeuGameOver.unity
+    guid: 04eb11aa0fd2f4a7b853ff45d3218136
   m_configObjects: {}
