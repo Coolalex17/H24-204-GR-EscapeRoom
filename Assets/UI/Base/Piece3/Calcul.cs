@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.ProBuilder.MeshOperations;
@@ -17,8 +17,8 @@ public class Calcul : MonoBehaviour //ChatGpt
     private float tempsRestant;
     private bool tempsEcoule = false;
 
-    private int currentAnswer;
-
+    private int reponsePresentement;
+    public Text finPartie;
 
     void Start()
     {
@@ -41,9 +41,9 @@ public class Calcul : MonoBehaviour //ChatGpt
             {
                 tempsRestant = 0;
                 tempsEcoule = false;
-                GenererQuestion(); // Generate new question when time runs out
+                GenererQuestion(); // Générer une nouvelle question quand le chronomètre finit
 
-                ReinitialiserTemps(); // Reset and restart the timer
+                ReinitialiserTemps(); // Reinitialiser et recommencer le chronomètre
             }
         }
     }
@@ -55,7 +55,7 @@ public class Calcul : MonoBehaviour //ChatGpt
     }
     void GenererQuestion()
     {
-        if (score < 7) // Only generate a new question if the score is less than 7
+        if (score < 7) // On génère une question seulement si le score est inférieur à 7.
         {
             int a;
             int b;
@@ -66,12 +66,12 @@ public class Calcul : MonoBehaviour //ChatGpt
                 b = Random.Range(1, 1000);
                 if (choix == 1)
                 {
-                    currentAnswer = a + b;
+                    reponsePresentement = a + b;
                     questionTexte.text = $"Qu'est-ce que {a} + {b}?";
                 }
                 else
                 {
-                    currentAnswer = a - b;
+                    reponsePresentement = a - b;
                     questionTexte.text = $"Qu'est-ce que {a} - {b}?";
                 }
             }
@@ -79,10 +79,10 @@ public class Calcul : MonoBehaviour //ChatGpt
             {
                 a = Random.Range(1, 40);
                 b = Random.Range(1, 40);
-                currentAnswer = a * b;
+                reponsePresentement = a * b;
                 questionTexte.text = $"Qu'est-ce que {a} * {b}?";
             }
-            else
+            else if (choix ==4)
             {
                 a = Random.Range(1, 100);
                 b = Random.Range(1, 100);
@@ -90,7 +90,7 @@ public class Calcul : MonoBehaviour //ChatGpt
                 {
                     division(a, b);
                 }
-                else
+                else if (b >= a)
                 {
                     division(b, a);
                 }
@@ -98,14 +98,14 @@ public class Calcul : MonoBehaviour //ChatGpt
         }
         else
         {
-            PartieGagnee(); // Player wins the game if score reaches 7
+            PartieGagnee(); // Le joueur gagne le jeu s'il a un score de 7
         }
     }
     void division(int chiffre1, int chiffre2)
     {
         int nombreRestant = chiffre1 % chiffre2;
-        currentAnswer = (chiffre1 + nombreRestant) / chiffre2;
-        questionTexte.text = $"Qu'est-ce que {chiffre1 + nombreRestant} * {chiffre2}?";
+        reponsePresentement = (chiffre1 - nombreRestant) / chiffre2;
+        questionTexte.text = $"Qu'est-ce que {chiffre1 - nombreRestant} * {chiffre2}?";
     }
 
 
@@ -113,22 +113,22 @@ public class Calcul : MonoBehaviour //ChatGpt
     {
         if (int.TryParse(reponseTexte.text, out int reponseJoueur))
         {
-            if (reponseJoueur == currentAnswer)
+            if (reponseJoueur == reponsePresentement)
             {
                 score++;
                 scoreTexte.text = "Score: " + score;
 
             }
         }
-        reponseTexte.text = ""; // Clear input field after submission
+        reponseTexte.text = ""; // On vide le inputfield après avoir envoyé une réponse
         if (score < 7)
         {
-            GenererQuestion(); // Generate a new question on correct answer
-            ReinitialiserTemps(); // Reset the timer after generating a new question
+            GenererQuestion(); // On génère une nouvelle question
+            ReinitialiserTemps(); // On recommence le chronomètre après une nouvelle question
         }
         else
         {
-            PartieGagnee(); // Ends the game if the score reaches 7
+            PartieGagnee(); // La partie finit si le score est de 7
 
         }
     }
@@ -143,15 +143,16 @@ public class Calcul : MonoBehaviour //ChatGpt
 
     void PartieGagnee()
     {
-        // Implement what happens when player wins
+        // Implète la logique quand le joueur gagne
         tempsEcoule = false;
-        questionTexte.text = "Vous avez r�ussi!";
-        reponseBouton.interactable = false; // Disable the button 
+        questionTexte.text = "Vous avez réussi!";
+        reponseBouton.interactable = false; // On empĉhe le joueur d'interagir avec le bouton s'il a gagné. 
+        finPartie.gameObject.SetActive(true); // Show win message
     }
 
-    void ReinitialiserTemps()
+        void ReinitialiserTemps()
     {
-        tempsRestant = tempsParQuestion; // Reset the timer for a new question
-        tempsEcoule = true; // Make sure the timer starts running after reset
+        tempsRestant = tempsParQuestion; // On recommence le chronomètre après une nouvelle question
+        tempsEcoule = true;
     }
 }

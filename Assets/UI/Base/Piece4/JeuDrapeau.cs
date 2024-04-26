@@ -5,103 +5,103 @@ using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class JeuDrapeau : MonoBehaviour //ChatGPT
 {
-    public Image flagImage;
-    public List<Sprite> flagSprites; // List to hold flag sprites
-    public Button[] optionButtons; // Buttons to display country names
-    public Text timerText;
-    public Text scoreText;
+    public Image imageDrapeau;
+    public List<Sprite> listeDrapeaux; // Liste de tous les drapeaux
+    public Button[] nomsDeDrapeaux; //boutons qui affichent des noms possibles pour le drapeau affiché
+    public Text texteChronometre;
+    public Text scoreTexte;
 
-    private int correctIndex;
+    private int indexCorrect;
     private int score = 0;
-    private float timer = 3.0f;
-    private bool isPlaying = true;
+    private float temps = 3.0f;
+    private bool estEnTrainDeJouer = true;
     public Text finPartie;
 
     void Start()
     {
-        scoreText.text = "Score : " + score;
-        NextFlag();
+        scoreTexte.text = "Score : " + score;
+        ProchainDrapeau();
     }
 
     void Update()
     {
-        if (!isPlaying) return;
+        if (!estEnTrainDeJouer) return;
 
-        timer -= Time.deltaTime;
-        timerText.text = "Time: " + Mathf.Round(timer).ToString();
+        temps -= Time.deltaTime;
+        texteChronometre.text =  Mathf.Round(temps).ToString();
 
-        if (timer <= 0)
+        if (temps <= 0)
         {
-            NextFlag();
+            ProchainDrapeau();
         }
     }
 
-    void NextFlag()
+    void ProchainDrapeau()
     {
         if (score >= 20)
         {
             Debug.Log("Win!");
-            finPartie.gameObject.SetActive(true); // Show win message
-            isPlaying = false; // Stop the game logic
-            foreach (var button in optionButtons)
+            finPartie.gameObject.SetActive(true); // Affiche que la partie est gagnée
+            estEnTrainDeJouer = false; // Arrête la logique du jeu
+            foreach (var button in nomsDeDrapeaux)
             {
-                button.interactable = false; // Disable all answer buttons
+                button.interactable = false; // Désactive les boutons
             }
-            timerText.gameObject.SetActive(false); // Optionally hide the timer
+            texteChronometre.gameObject.SetActive(false); // Cache le chronomètre
             return;
         }
 
-        timer = 3.0f; // Reset the timer
+        temps = 3.0f; // Réinitialise le temps
 
-        int flagIndex = Random.Range(0, flagSprites.Count);
-        flagImage.sprite = flagSprites[flagIndex];
+        int indexDrapeau = Random.Range(0, listeDrapeaux.Count);
+        imageDrapeau.sprite = listeDrapeaux[indexDrapeau];
 
-        correctIndex = Random.Range(0, optionButtons.Length);
-        List<int> usedIndices = new List<int>(); // To avoid repeating countries
+        indexCorrect = Random.Range(0, nomsDeDrapeaux.Length);
+        List<int> indexsUtilises = new List<int>(); // Empêche de donner des noms identiques comme choix
 
-        for (int i = 0; i < optionButtons.Length; i++)
+        for (int i = 0; i < nomsDeDrapeaux.Length; i++)
         {
-            int buttonIndex = i; // Capture the current index in a local variable
-            optionButtons[i].onClick.RemoveAllListeners();
-            optionButtons[i].onClick.AddListener(() => Answer(buttonIndex));
+            int indexBouton = i; // Sauvegarde l'index dans une variable temporaire
+            nomsDeDrapeaux[i].onClick.RemoveAllListeners();
+            nomsDeDrapeaux[i].onClick.AddListener(() => Reponse(indexBouton));
 
-            if (i == correctIndex)
+            if (i == indexCorrect)
             {
-                optionButtons[i].GetComponentInChildren<Text>().text = GetCountryName(flagSprites[flagIndex].name);
+                nomsDeDrapeaux[i].GetComponentInChildren<Text>().text = ObtenirLeNomDuDrapeau(listeDrapeaux[indexDrapeau].name);
             }
             else
             {
-                Sprite incorrectFlag;
-                int randomIndex;
+                Sprite mauvaisDrapeau;
+                int indexAuHasard;
                 do
                 {
-                    randomIndex = Random.Range(0, flagSprites.Count);
-                    incorrectFlag = flagSprites[randomIndex];
-                } while (incorrectFlag.name == flagSprites[flagIndex].name || usedIndices.Contains(randomIndex));
+                    indexAuHasard = Random.Range(0, listeDrapeaux.Count);
+                    mauvaisDrapeau = listeDrapeaux[indexAuHasard];
+                } while (mauvaisDrapeau.name == listeDrapeaux[indexDrapeau].name || indexsUtilises.Contains(indexAuHasard));
 
-                optionButtons[i].GetComponentInChildren<Text>().text = GetCountryName(incorrectFlag.name);
-                usedIndices.Add(randomIndex); // Add this index to the used list
+                nomsDeDrapeaux[i].GetComponentInChildren<Text>().text = ObtenirLeNomDuDrapeau(mauvaisDrapeau.name);
+                indexsUtilises.Add(indexAuHasard); 
             }
         }
     }
 
 
-    void Answer(int index)
+    void Reponse(int index)
     {
-        Debug.Log("Answer Index: " + index + ", Correct Index: " + correctIndex);
-        if (index == correctIndex)
+      
+        if (index == indexCorrect)
         {
             score++;
-            scoreText.text = "Score: " + score;
-            Debug.Log("Score Updated: " + score); // Confirm score is updated
+            scoreTexte.text = "Score: " + score;
+          
         }
-        NextFlag();
+        ProchainDrapeau();
     }
 
 
-    string GetCountryName(string flagName)
+    string ObtenirLeNomDuDrapeau(string flagName)
     {
-        // Assuming the flag's name is the country name; adjust if it's not
+       
         return flagName;
     }
 }
