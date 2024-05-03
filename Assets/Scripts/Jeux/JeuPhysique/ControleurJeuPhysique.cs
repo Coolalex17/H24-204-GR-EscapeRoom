@@ -34,6 +34,7 @@ public class ControleurJeuPhysique : MonoBehaviour
     private Slider sliderForce;
     private Slider sliderAngle;
     private Button boutonTirer;
+    private Label messageInformation; 
     private bool jeuDebute;
 
     private GameObject projectile;
@@ -64,8 +65,10 @@ public class ControleurJeuPhysique : MonoBehaviour
         sliderForce = UIJeu.rootVisualElement.Q<Slider>("SliderForce");
         sliderAngle = UIJeu.rootVisualElement.Q<Slider>("SliderRotation");
         boutonTirer = UIJeu.rootVisualElement.Q<Button>("BoutonTirer");
+        messageInformation = UIJeu.rootVisualElement.Q<Label>("Message");
 
         UIJeu.rootVisualElement.Q<GroupBox>("BoiteBoutons").style.visibility = Visibility.Hidden;
+        messageInformation.style.visibility = Visibility.Hidden;
         cameraJeuPhysique.enabled = false;
         jeuDebute = false;
 
@@ -75,6 +78,8 @@ public class ControleurJeuPhysique : MonoBehaviour
         joueur.StopperMouvement();
         jeuDebute = true;
         UIJeu.rootVisualElement.Q<GroupBox>("BoiteBoutons").style.visibility = Visibility.Visible;
+        messageInformation.style.visibility= Visibility.Visible;
+        modifierTexte("Envoyez un projectile dans le cercle");
         cameraJoueur.enabled = false;
         cameraJeuPhysique.enabled = true;
         creerPlanete();
@@ -160,7 +165,30 @@ public class ControleurJeuPhysique : MonoBehaviour
             if (tempsShake >0){
                 ShakeBackground();
             }
+            updaterTexte();
         }   
+    }
+    private void modifierTexte(string message)
+    {
+        messageInformation.text = message;
+        messageInformation.style.opacity = 100;
+        opaciteeActuelle = 1;
+        delaiOpacitee = TempsOpacitee;
+    }
+    private float delaiOpacitee;
+    private readonly float TempsOpacitee = 1;
+    private float opaciteeActuelle;
+    private void updaterTexte()
+    {
+        if (delaiOpacitee > 0)
+        {
+            delaiOpacitee -= Time.deltaTime;
+        }
+        else
+        {
+            opaciteeActuelle -= Time.deltaTime * 10;
+            messageInformation.style.opacity = opaciteeActuelle;
+        }
     }
     private float obtenirDistance(){
         return Mathf.Abs((projectile.transform.position - planete.transform.position).magnitude);
@@ -168,12 +196,15 @@ public class ControleurJeuPhysique : MonoBehaviour
     private void validerCompletion(){
         float distance = obtenirDistance();
         if (distance <= (projectile.transform.localScale.x + planete.transform.localScale.x) * 5) {
+            modifierTexte("Envoyez un projectile en orbite");
             enleverProjectile();
         }
         //Le +40 ajoute une marge derreur au joueur
         if( distance*2 < distanceValidation + 40){
             tempsValidation += Time.deltaTime;   
             if (tempsValidation > DELAI_VALIDATION){
+                modifierTexte("Bravo");
+
                 enleverProjectile();
                 terminerJeu();
             }

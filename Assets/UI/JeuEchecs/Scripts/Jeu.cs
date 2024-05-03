@@ -31,10 +31,6 @@ public class Jeu : MonoBehaviour
 
         switch (nomSceneActuelle)
         {
-            case "SceneJeuEchecsDefault":
-                InitialiserJeuDefault();
-                prochaineScene = "SceneJeuEchecs1";
-                break;
             case "SceneJeuEchecs1":
                 InitialiserJeu1();
                 prochaineScene = "SceneJeuEchecs2";
@@ -49,7 +45,7 @@ public class Jeu : MonoBehaviour
                 break;
             case "SceneJeuEchecs4":
                 InitialiserJeu4();
-                prochaineScene = "SceneJeuEchecsDefault";
+                prochaineScene = "SceneJeuV2";
                 break;
         }
 
