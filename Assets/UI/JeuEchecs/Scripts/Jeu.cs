@@ -31,10 +31,6 @@ public class Jeu : MonoBehaviour
 
         switch (nomSceneActuelle)
         {
-            case "SceneJeuEchecsDefault":
-                InitialiserJeuDefault();
-                prochaineScene = "SceneJeuEchecs1";
-                break;
             case "SceneJeuEchecs1":
                 InitialiserJeu1();
                 prochaineScene = "SceneJeuEchecs2";
@@ -49,7 +45,7 @@ public class Jeu : MonoBehaviour
                 break;
             case "SceneJeuEchecs4":
                 InitialiserJeu4();
-                prochaineScene = "SceneJeuEchecsDefault";
+                prochaineScene = "SceneJeuV2";
                 break;
         }
 
@@ -74,6 +70,7 @@ public class Jeu : MonoBehaviour
             finDuJeu = false;
 
             SceneManager.LoadScene(prochaineScene);
+
         }
     }
 
@@ -148,26 +145,21 @@ public class Jeu : MonoBehaviour
     {
         // Remplir tableaux des couleurs des joueurs avec leurs pièces
         joueurBlanc = new GameObject[] {
-            Creer("tour_blanc", 0, 0), Creer("cavalier_blanc", 1, 0),
-            Creer("fou_blanc", 1, 1), Creer("dame_blanc", 3, 4),
-            Creer("roi_blanc", 4, 0), Creer("fou_blanc", 2, 3),
-            Creer("cavalier_blanc", 6, 0), Creer("tour_blanc", 7, 0),
-            Creer("pion_blanc", 0, 1), Creer("pion_blanc", 4, 3), 
-            Creer("pion_blanc", 5, 1), Creer("pion_blanc", 6, 1), 
-            Creer("pion_blanc", 7, 1) };
+            Creer("tour_blanc", 7, 0), Creer("cavalier_blanc", 3, 7),
+            Creer("fou_blanc", 6, 0), Creer("dame_blanc", 1, 0),
+            Creer("roi_blanc", 3, 5), Creer("fou_blanc", 6, 1),
+            Creer("tour_blanc", 6, 7), Creer("pion_blanc", 3, 1),
+        Creer("cavalier_blanc", 6, 4)};
 
         joueurNoir = new GameObject[] {
-            Creer("tour_noir", 0, 7), Creer("cavalier_noir", 2, 5),
-            Creer("fou_noir", 2, 7), Creer("dame_noir", 3, 7),
-            Creer("roi_noir", 4, 7), Creer("fou_noir", 5, 7),
-            Creer("cavalier_noir", 5, 5), Creer("tour_noir", 7, 7),
+            Creer("roi_noir", 3, 3), Creer("pion_noir", 7, 2),
             Creer("pion_noir", 0, 6), Creer("pion_noir", 1, 6),
-            Creer("pion_noir", 2, 6), Creer("pion_noir", 3, 6),
-            Creer("pion_noir", 5, 6), Creer("pion_noir", 6, 6), 
-            Creer("pion_noir", 7, 6) };
+            Creer("pion_noir", 2, 3), Creer("pion_noir", 3, 2),
+            Creer("pion_noir", 4, 2), Creer("pion_noir", 5, 6), 
+            Creer("pion_noir", 6, 5) };
 
-        correctMoveStart = new Vector2Int(3, 4);
-        correctMoveEnd = new Vector2Int(5, 6);
+        correctMoveStart = new Vector2Int(1, 0);
+        correctMoveEnd = new Vector2Int(1, 1);
     }
 
     public void InitialiserJeu4()
