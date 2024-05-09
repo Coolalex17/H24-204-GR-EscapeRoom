@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MouvementJoueur : MonoBehaviour
@@ -13,12 +14,19 @@ public class MouvementJoueur : MonoBehaviour
     
     void Start(){
         mouvementPermi = true;
+        if(PreferencesJoueur.GetSavedInventaire() == null) {
+            PreferencesJoueur.SaveInventaire(Joueur.GetComponent<Inventaire>());
+        } else {
+
+        }
+        Joueur.position = PreferencesJoueur.GetSavedPLayerPosition();
     }
    
     void FixedUpdate(){
         if (mouvementPermi){
             BoujerJoueur();
         }
+        PreferencesJoueur.SavePosition(Joueur.position);
     }
     public void StopperMouvement() { 
         mouvementPermi=false;
@@ -50,5 +58,6 @@ public class MouvementJoueur : MonoBehaviour
             Joueur.velocity = Vector3.ClampMagnitude(Joueur.velocity,  VITESSE);
 
         }
+
     }
 }
