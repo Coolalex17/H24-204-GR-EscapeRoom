@@ -8,7 +8,7 @@ public class ControleurUISceneOuverture : MonoBehaviour
     
     public void BtnContinuer()
     {
-        SceneManager.LoadScene("ScenePrincipale");
+        SceneManager.LoadScene("SceneJeuV2");
     }
 
 

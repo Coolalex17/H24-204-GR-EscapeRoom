@@ -98,6 +98,7 @@ public class BallPhysique : MonoBehaviour
     {
         Debug.Log(winner + " wins!");
         gameOver = true;
-        SceneManager.LoadScene("3emJeuGameOver"); // Load the game over scene
+        PreferencesJoueur.GetSavedInventaire().AjouterItem(Inventaire.Items.CLEE_PORTE2,1);
+        SceneManager.LoadScene("SceneJeuV2"); // Load the game over scene
     }
 }

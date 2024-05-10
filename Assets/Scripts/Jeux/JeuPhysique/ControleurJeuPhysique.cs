@@ -98,6 +98,7 @@ public class ControleurJeuPhysique : MonoBehaviour
         Destroy(verificateur);
         Destroy(cercleVert);
         mouvementJoueur.demarerJoueur();
+        PreferencesJoueur.GetSavedInventaire().AjouterItem(Inventaire.Items.CLEE_PORTE1,1);
     }
     private void creerVerificateurDistance(){
         distanceValidation = Random.Range(35, 60) + planete.transform.localScale.x;
@@ -203,8 +204,6 @@ public class ControleurJeuPhysique : MonoBehaviour
         if( distance*2 < distanceValidation + 40){
             tempsValidation += Time.deltaTime;   
             if (tempsValidation > DELAI_VALIDATION){
-                modifierTexte("Bravo");
-
                 enleverProjectile();
                 terminerJeu();
             }

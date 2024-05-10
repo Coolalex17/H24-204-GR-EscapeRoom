@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InteractibleJeuSoccer : MonoBehaviour, Interactible
 {
@@ -9,7 +10,7 @@ public class InteractibleJeuSoccer : MonoBehaviour, Interactible
     }
 
     public void InteractionGauche(Transform Joueur) {
-        //Mettre la fonction pour entrer dans le jeu ici
+        SceneManager.LoadScene("3emJeu");
     }
 
 }

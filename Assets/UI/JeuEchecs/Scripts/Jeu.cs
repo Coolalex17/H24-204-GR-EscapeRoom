@@ -46,6 +46,7 @@ public class Jeu : MonoBehaviour
             case "SceneJeuEchecs4":
                 InitialiserJeu4();
                 prochaineScene = "SceneJeuV2";
+                PreferencesJoueur.FinirJeuEchec();
                 break;
         }
 
@@ -103,6 +104,7 @@ public class Jeu : MonoBehaviour
 
     public void InitialiserJeu1()
     {
+        Debug.Log("Jeu");
         // Remplir tableaux des couleurs des joueurs avec leurs pièces
         joueurBlanc = new GameObject[] {
             Creer("tour_blanc", 3, 0), Creer("roi_blanc", 6, 0),
@@ -185,8 +187,8 @@ public class Jeu : MonoBehaviour
             Creer("pion_noir", 5, 6), Creer("pion_noir", 6, 5),
             Creer("pion_noir", 7, 6)};
 
-        correctMoveStart = new Vector2Int(1, 1);
-        correctMoveEnd = new Vector2Int(4, 4);
+        correctMoveStart = new Vector2Int(6, 4);
+        correctMoveEnd = new Vector2Int(5, 5);
     }
 
     public GameObject Creer(string nom, int x, int y) {

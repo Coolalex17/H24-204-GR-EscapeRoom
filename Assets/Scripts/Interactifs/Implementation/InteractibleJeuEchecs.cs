@@ -13,6 +13,9 @@ public class InteractibleJeuEchecs : MonoBehaviour, Interactible
     //Load la scène du jeu d'échecs
     public void InteractionGauche(Transform Joueur)
     {
+        if (PreferencesJoueur.getFiniJeuEchec()) {
+            return;
+        }
         Cursor.lockState = CursorLockMode.Confined;
         SceneManager.LoadScene("SceneJeuEchecs1");
     }

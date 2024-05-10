@@ -20,7 +20,7 @@ public class ControlerHud : MonoBehaviour
             return;
         }
         Timer = HUDJoueur.rootVisualElement.Q<Label>("Timer");
-        TempsEcoule = 0;//TODO prendre le temps du fichier de sauvegarde
+        TempsEcoule = PreferencesJoueur.getTempsPartie();
 
         ContenantInventaire = HUDJoueur.rootVisualElement.Q<GroupBox>("ContenantInventaire");
     }
@@ -40,7 +40,7 @@ public class ControlerHud : MonoBehaviour
     private void afficherInventaire()
     {
         ContenantInventaire.Clear();
-        Items[] InventaireTemp = InventaireJoueur.ObtenirInventaire().ToArray();
+        Items[] InventaireTemp = PreferencesJoueur.GetSavedInventaire().ObtenirInventaire().ToArray();
 
         for (int i = 0;i < InventaireTemp.Length;i++)
         {
