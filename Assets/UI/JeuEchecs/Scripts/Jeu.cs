@@ -158,7 +158,7 @@ public class Jeu : MonoBehaviour
             Creer("pion_noir", 0, 6), Creer("pion_noir", 1, 6),
             Creer("pion_noir", 2, 3), Creer("pion_noir", 3, 2),
             Creer("pion_noir", 4, 2), Creer("pion_noir", 5, 6), 
-            Creer("pion_noir", 6, 5) };
+            Creer("pion_noir", 6, 5), Creer("tour_noir", 0, 4) };
 
         correctMoveStart = new Vector2Int(1, 0);
         correctMoveEnd = new Vector2Int(1, 1);
@@ -183,12 +183,11 @@ public class Jeu : MonoBehaviour
             Creer("roi_noir", 6, 6), Creer("fou_noir", 5, 7),
             Creer("cavalier_noir", 2, 4), Creer("tour_noir", 3, 7),
             Creer("pion_noir", 0, 4), Creer("pion_noir", 1, 4),
-            Creer("pion_noir", 3, 5), Creer("pion_noir", 4, 4),
-            Creer("pion_noir", 5, 6), Creer("pion_noir", 6, 5),
-            Creer("pion_noir", 7, 6)};
-
-        correctMoveStart = new Vector2Int(6, 4);
-        correctMoveEnd = new Vector2Int(5, 5);
+            Creer("pion_noir", 4, 4), Creer("pion_noir", 5, 6), 
+            Creer("pion_noir", 6, 5), Creer("pion_noir", 7, 6)};
+         
+        correctMoveStart = new Vector2Int(1, 1);
+        correctMoveEnd = new Vector2Int(4, 4);
     }
 
     public GameObject Creer(string nom, int x, int y) {
