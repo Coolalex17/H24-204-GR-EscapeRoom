@@ -10,7 +10,14 @@ public static class PreferencesJoueur
     private static Inventaire SavedInventaire;
     private static float TempsPartie;
     private static int ScenePrecedente;
+    private static bool FiniJeuEchec = false;
     
+    public static bool getFiniJeuEchec() {
+        return FiniJeuEchec;
+    }
+    public static void FinirJeuEchec() {
+        FiniJeuEchec=true;
+    }
     
     public static int getScenePrecedente() { return ScenePrecedente; }
     public static void AssigneScenePrecedente(int scene) {  ScenePrecedente = scene; }

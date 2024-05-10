@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5b075613d93e0a48b521585b559183c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controlleur: {fileID: 0}
+  controlleur: {fileID: 2453037956240843944}
   grilleDeplacement: {fileID: 4121992652474255120, guid: 75f851510625f3a4fbeb4c88ff710438, type: 3}
   roi_noir: {fileID: 21300000, guid: de8cd05a3b09ea842aa010197f520687, type: 3}
   dame_noir: {fileID: 21300000, guid: a87b9cd9d18ba164ea9c902f1e0c0add, type: 3}
