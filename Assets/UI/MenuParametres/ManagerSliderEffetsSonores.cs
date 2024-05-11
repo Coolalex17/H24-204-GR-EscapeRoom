@@ -11,12 +11,12 @@ public class ManagerEffetsSonores : MonoBehaviour
         
         float volumeEnregistre = PlayerPrefs.GetFloat("EffetsSonores", 1f);
         effetsSlider.value = volumeEnregistre;
-        UpdateVolume(volumeEnregistre);
-        effetsSlider.onValueChanged.AddListener(UpdateVolume);
+        MettreAJourVolume(volumeEnregistre);
+        effetsSlider.onValueChanged.AddListener(MettreAJourVolume);
     }
 
    
-    void UpdateVolume(float volume)
+    void MettreAJourVolume(float volume)
     {
         audioSource.volume = volume;
         PlayerPrefs.SetFloat("EffetsSonores", volume);

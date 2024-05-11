@@ -20,6 +20,7 @@ public class MouvementJoueur : MonoBehaviour
 
         }
         Joueur.position = PreferencesJoueur.GetSavedPLayerPosition();
+        Debug.Log(Joueur.position);
     }
    
     void FixedUpdate(){

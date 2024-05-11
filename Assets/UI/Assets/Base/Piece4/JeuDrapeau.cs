@@ -37,11 +37,11 @@ public class JeuDrapeau : MonoBehaviour //ChatGPT
         }
     }
 
-    void ProchainDrapeau()
+    private void ProchainDrapeau()
     {
-        if (score >= 20)
+        if (score >= 25)
         {
-            Debug.Log("Win!");
+          
             finPartie.gameObject.SetActive(true); // Affiche que la partie est gagnée
             estEnTrainDeJouer = false; // Arrête la logique du jeu
             foreach (var button in nomsDeDrapeaux)
@@ -87,7 +87,7 @@ public class JeuDrapeau : MonoBehaviour //ChatGPT
     }
 
 
-    void Reponse(int index)
+    private void Reponse(int index)
     {
       
         if (index == indexCorrect)
@@ -100,10 +100,10 @@ public class JeuDrapeau : MonoBehaviour //ChatGPT
     }
 
 
-    string ObtenirLeNomDuDrapeau(string flagName)
+    string ObtenirLeNomDuDrapeau(string nomDrapeau)
     {
        
-        return flagName;
+        return nomDrapeau;
     }
 }
 

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public static class PreferencesJoueur
 {
     private static float SensibiliteeCamera = 100;
-    private static Vector3 SavedPlayerPosition;
+    private static Vector3 SavedPlayerPosition = new Vector3(0, 3f, -7);
     private static Inventaire SavedInventaire;
     private static float TempsPartie;
     private static int ScenePrecedente;
@@ -29,9 +29,6 @@ public static class PreferencesJoueur
         TempsPartie = temps;
     }
     public static Vector3 GetSavedPLayerPosition() {
-        if (SavedPlayerPosition == null) { 
-            SavedPlayerPosition = new Vector3(0,2.5f,-7);
-        }
         return SavedPlayerPosition;
     }
     public static Inventaire GetSavedInventaire() {
