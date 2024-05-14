@@ -1,109 +1,116 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using UnityEngine.Sprites;
+using UnityEngine.SceneManagement;
 
-public class JeuDrapeau : MonoBehaviour //ChatGPT
+public class JeuDrapeau : MonoBehaviour
 {
-    public Image imageDrapeau;
-    public List<Sprite> listeDrapeaux; // Liste de tous les drapeaux
-    public Button[] nomsDeDrapeaux; //boutons qui affichent des noms possibles pour le drapeau affiché
+    public Image drapeauImage;
+    public List<Sprite> listeDrapeaux; // List to hold flag sprites
+    public Button[] boutonsOptions; // Buttons to display country names
     public Text texteChronometre;
-    public Text scoreTexte;
+    public Text texteScore;
 
-    private int indexCorrect;
+    private int bonIndex;
     private int score = 0;
-    private float temps = 3.0f;
-    private bool estEnTrainDeJouer = true;
+    private float chronometre = 5.0f;
+    private bool enTrainDeJouer = true;
     public Text finPartie;
+    public Button quitter;
 
     void Start()
     {
-
-        scoreTexte.text = "Score : " + score;
+        texteScore.text = "Score: " + score;
         ProchainDrapeau();
     }
 
     void Update()
     {
-        if (!estEnTrainDeJouer) return;
+        if (!enTrainDeJouer) return;
 
-        temps -= Time.deltaTime;
-        texteChronometre.text =  Mathf.Round(temps).ToString();
+        chronometre -= Time.deltaTime;
+        texteChronometre.text =  Mathf.Round(chronometre).ToString();
 
-        if (temps <= 0)
+        if (chronometre <= 0)
         {
             ProchainDrapeau();
         }
     }
 
-    private void ProchainDrapeau()
+    void ProchainDrapeau()
     {
         if (score >= 25)
         {
-          
-            finPartie.gameObject.SetActive(true); // Affiche que la partie est gagnée
-            estEnTrainDeJouer = false; // Arrête la logique du jeu
-            foreach (var button in nomsDeDrapeaux)
+            
+            finPartie.gameObject.SetActive(true); // Show win message
+            enTrainDeJouer = false; // Stop the game logic
+            foreach (var button in boutonsOptions)
             {
-                button.interactable = false; // Désactive les boutons
+                button.GetComponentInChildren<Text>().text = " ";
+                button.interactable = false; // Disable all answer buttons
             }
-            texteChronometre.gameObject.SetActive(false); // Cache le chronomètre
+            texteChronometre.gameObject.SetActive(false); // Optionally hide the timer
+            drapeauImage.gameObject.SetActive(false); // Désactiver l'image du drapeau
+                                                      // PreferencesJoueur.FinirJeuDrapeaux();
+            quitter.gameObject.SetActive(true);
             return;
         }
 
-        temps = 3.0f; // Réinitialise le temps
+        chronometre = 5.0f; // Reset the timer
 
         int indexDrapeau = Random.Range(0, listeDrapeaux.Count);
-        imageDrapeau.sprite = listeDrapeaux[indexDrapeau];
+        drapeauImage.sprite = listeDrapeaux[indexDrapeau];
 
-        indexCorrect = Random.Range(0, nomsDeDrapeaux.Length);
-        List<int> indexsUtilises = new List<int>(); // Empêche de donner des noms identiques comme choix
+        bonIndex = Random.Range(0, boutonsOptions.Length);
+        List<int> indicesUtilises = new List<int>(); // To avoid repeating countries
 
-        for (int i = 0; i < nomsDeDrapeaux.Length; i++)
+        for (int i = 0; i < boutonsOptions.Length; i++)
         {
-            int indexBouton = i; // Sauvegarde l'index dans une variable temporaire
-            nomsDeDrapeaux[i].onClick.RemoveAllListeners();
-            nomsDeDrapeaux[i].onClick.AddListener(() => Reponse(indexBouton));
+            int indexBouton = i; // Capture the current index in a local variable
+            boutonsOptions[i].onClick.RemoveAllListeners();
+            boutonsOptions[i].onClick.AddListener(() => Reponse(indexBouton));
 
-            if (i == indexCorrect)
+            if (i == bonIndex)
             {
-                nomsDeDrapeaux[i].GetComponentInChildren<Text>().text = ObtenirLeNomDuDrapeau(listeDrapeaux[indexDrapeau].name);
+                boutonsOptions[i].GetComponentInChildren<Text>().text = ObtenirNomDrapeau(listeDrapeaux[indexDrapeau].name);
             }
             else
             {
                 Sprite mauvaisDrapeau;
-                int indexAuHasard;
+                int indexHasard;
                 do
                 {
-                    indexAuHasard = Random.Range(0, listeDrapeaux.Count);
-                    mauvaisDrapeau = listeDrapeaux[indexAuHasard];
-                } while (mauvaisDrapeau.name == listeDrapeaux[indexDrapeau].name || indexsUtilises.Contains(indexAuHasard));
+                    indexHasard = Random.Range(0, listeDrapeaux.Count);
+                    mauvaisDrapeau = listeDrapeaux[indexHasard];
+                } while (mauvaisDrapeau.name == listeDrapeaux[indexDrapeau].name || indicesUtilises.Contains(indexHasard));
 
-                nomsDeDrapeaux[i].GetComponentInChildren<Text>().text = ObtenirLeNomDuDrapeau(mauvaisDrapeau.name);
-                indexsUtilises.Add(indexAuHasard); 
+                boutonsOptions[i].GetComponentInChildren<Text>().text = ObtenirNomDrapeau(mauvaisDrapeau.name);
+                indicesUtilises.Add(indexHasard); // Add this index to the used list
             }
         }
     }
 
 
-    private void Reponse(int index)
+
+    void Reponse(int index)
     {
-      
-        if (index == indexCorrect)
+        
+        if (index == bonIndex)
         {
             score++;
-            scoreTexte.text = "Score: " + score;
-          
+            texteScore.text = "Score: " + score;
+            Debug.Log("Score Updated: " + score); // Confirm score is updated
         }
         ProchainDrapeau();
     }
-
-
-    string ObtenirLeNomDuDrapeau(string nomDrapeau)
+    string ObtenirNomDrapeau(string flagName)
     {
-       
-        return nomDrapeau;
+        // Assuming the flag's name is the country name; adjust if it's not
+        return flagName;
+    }
+    public void Quitter()
+    {
+        // Load or activate the school scene
+        SceneManager.LoadScene("SceneJeuV2");
     }
 }
-

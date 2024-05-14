@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class InteractibleJeuCalcul : MonoBehaviour, Interactible
+public class InteractibleJeuDrapeau : MonoBehaviour, Interactible
 {
     public void InteractionDroite(Transform Joueur)
     {
@@ -14,17 +13,12 @@ public class InteractibleJeuCalcul : MonoBehaviour, Interactible
     //Load la scène du jeu d'échecs
     public void InteractionGauche(Transform Joueur)
     {
-        if (PreferencesJoueur.getFiniJeuCalcul())
+        if (PreferencesJoueur.getFiniJeuDrapeaux())
         {
             return;
         }
         Cursor.lockState = CursorLockMode.Confined;
-        SceneManager.LoadScene("JeuMath");
-    }
-    public void Quitter()
-    {
-        // Load or activate the school scene
-        SceneManager.LoadScene("SceneJeuV2");
+        SceneManager.LoadScene("JeuDrapeau");
     }
 
 

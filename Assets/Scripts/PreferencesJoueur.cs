@@ -11,14 +11,33 @@ public static class PreferencesJoueur
     private static float TempsPartie;
     private static int ScenePrecedente;
     private static bool FiniJeuEchec = false;
-    
+    private static bool FiniJeuCalcul = false;
+    private static bool FiniJeuDrapeaux = false;
+
     public static bool getFiniJeuEchec() {
         return FiniJeuEchec;
     }
     public static void FinirJeuEchec() {
         FiniJeuEchec=true;
     }
-    
+    public static bool getFiniJeuCalcul()
+    {
+        return FiniJeuCalcul;
+    }
+    public static void FinirJeuCalcul()
+    {
+        FiniJeuCalcul = true;
+    }
+
+    public static bool getFiniJeuDrapeaux()
+    {
+        return FiniJeuDrapeaux;
+    }
+    public static void FinirJeuDrapeaux()
+    {
+        FiniJeuDrapeaux = true;
+    }
+
     public static int getScenePrecedente() { return ScenePrecedente; }
     public static void AssigneScenePrecedente(int scene) {  ScenePrecedente = scene; }
 
