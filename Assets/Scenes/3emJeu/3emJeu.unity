@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -741,7 +741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b8fc490c6eb147989de5a2fb18d8ce2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouvementSpeed: 7.5
+  mouvementSpeed: 7
   isAI: 1
   ball: {fileID: 1764534374}
 --- !u!114 &693405619
@@ -1354,8 +1354,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db91e28dca8eb445d83816f27d3d9149, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialSpeed: 10
-  speedIncrease: 0.25
+  initialSpeed: 8
+  speedIncrease: 0.2
   PlayerScore: {fileID: 38576136}
   AIScore: {fileID: 1860772774}
 --- !u!199 &1764534380
