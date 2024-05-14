@@ -23,13 +23,13 @@ public class ManagerMusique : MonoBehaviour
         audioSource.volume = musiqueVolume;
         musiqueSlider.value = musiqueVolume;
     }
-    void Update()
+    void MettreAJour()
     {
         audioSource.volume = musiqueVolume;
         PlayerPrefs.SetFloat("volume", musiqueVolume);
     }
 
-    public void UpdateVolume(float volume)
+    public void MettreAJourVolume(float volume)
     {
         musiqueVolume = volume;
     }

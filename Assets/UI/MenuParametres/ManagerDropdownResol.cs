@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ManagerDropdownResolution : MonoBehaviour
+public class ManagerDropdownResolution : MonoBehaviour //ChatGPT
 
 {
 
@@ -11,14 +11,14 @@ public class ManagerDropdownResolution : MonoBehaviour
     void Start()
     {
         // Subscribe to the OnValueChanged event of the dropdown
-        resolutionDropdown.onValueChanged.AddListener(OnResolutionDropdownValueChanged);
+        resolutionDropdown.onValueChanged.AddListener(ResolutionModifiee);
 
         // Load the previously saved resolution index
         int indexEnregistre = PlayerPrefs.GetInt("ResolutionIndex", 0);
         resolutionDropdown.value = indexEnregistre;
     }
 
-    void OnResolutionDropdownValueChanged(int resolutionIndex)
+    private void ResolutionModifiee(int resolutionIndex)
     {
         // Save the selected resolution index
         PlayerPrefs.SetInt("ResolutionIndex", resolutionIndex);
@@ -35,7 +35,7 @@ public class ManagerDropdownResolution : MonoBehaviour
         Screen.SetResolution(largeur, hauteur, true);
     }
 
-    void OnDisable()
+    private void SauvegarderResolutionIndex()
     {
         // Save the selected resolution index before changing scenes
         PlayerPrefs.Save();

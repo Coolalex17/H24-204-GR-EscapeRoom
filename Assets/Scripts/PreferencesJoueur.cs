@@ -6,19 +6,38 @@ using UnityEngine.SceneManagement;
 public static class PreferencesJoueur
 {
     private static float SensibiliteeCamera = 100;
-    private static Vector3 SavedPlayerPosition;
+    private static Vector3 SavedPlayerPosition = new Vector3(0, 3f, -7);
     private static Inventaire SavedInventaire;
     private static float TempsPartie;
     private static int ScenePrecedente;
     private static bool FiniJeuEchec = false;
-    
+    private static bool FiniJeuCalcul = false;
+    private static bool FiniJeuDrapeaux = false;
+
     public static bool getFiniJeuEchec() {
         return FiniJeuEchec;
     }
     public static void FinirJeuEchec() {
         FiniJeuEchec=true;
     }
-    
+    public static bool getFiniJeuCalcul()
+    {
+        return FiniJeuCalcul;
+    }
+    public static void FinirJeuCalcul()
+    {
+        FiniJeuCalcul = true;
+    }
+
+    public static bool getFiniJeuDrapeaux()
+    {
+        return FiniJeuDrapeaux;
+    }
+    public static void FinirJeuDrapeaux()
+    {
+        FiniJeuDrapeaux = true;
+    }
+
     public static int getScenePrecedente() { return ScenePrecedente; }
     public static void AssigneScenePrecedente(int scene) {  ScenePrecedente = scene; }
 
@@ -29,9 +48,6 @@ public static class PreferencesJoueur
         TempsPartie = temps;
     }
     public static Vector3 GetSavedPLayerPosition() {
-        if (SavedPlayerPosition == null) { 
-            SavedPlayerPosition = new Vector3(0,2.5f,-7);
-        }
         return SavedPlayerPosition;
     }
     public static Inventaire GetSavedInventaire() {
