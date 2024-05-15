@@ -985,12 +985,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d8e7f4990e818149ac40410cebaf5f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flagImage: {fileID: 0}
-  flagSprites: []
-  optionButtons: []
-  timerText: {fileID: 0}
-  scoreText: {fileID: 0}
-  winText: {fileID: 0}
+  drapeauImage: {fileID: 0}
+  listeDrapeaux: []
+  boutonsOptions: []
+  texteChronometre: {fileID: 0}
+  texteScore: {fileID: 0}
+  finPartie: {fileID: 0}
   quitter: {fileID: 0}
 --- !u!1 &1035284685
 GameObject:
@@ -1513,14 +1513,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d8e7f4990e818149ac40410cebaf5f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flagImage: {fileID: 1000459284}
-  flagSprites:
+  drapeauImage: {fileID: 1000459284}
+  listeDrapeaux:
   - {fileID: 21300000, guid: b7ee83aff2371cf4fa0d49227d5ae197, type: 3}
   - {fileID: 21300000, guid: 463ae48b8c09ff3428208eabb0e016e2, type: 3}
   - {fileID: 21300000, guid: aefe04f4589b25346b1116da0fa2c19a, type: 3}
   - {fileID: 21300000, guid: 095b6d985746a6c449c1e42f3fbe9079, type: 3}
   - {fileID: 21300000, guid: 0801cf6a9f3314f40a2e46e3c9fdfe07, type: 3}
-  - {fileID: 21300000, guid: 33fba3a589986e443bb174429af0deff, type: 3}
   - {fileID: 21300000, guid: 33fba3a589986e443bb174429af0deff, type: 3}
   - {fileID: 21300000, guid: cd844047b8cec1f4d8502ecebac48ad9, type: 3}
   - {fileID: 21300000, guid: 140552d7f7f510f4e840caa3cf84deda, type: 3}
@@ -1742,14 +1741,14 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 82fa4f2103f2ac3489dc408fd9066f48, type: 3}
   - {fileID: 21300000, guid: af2da5ed4c566104bb6cb124b5159cb8, type: 3}
   - {fileID: 21300000, guid: bbfdf92057f4f534d9877afff2bc53a2, type: 3}
-  optionButtons:
+  boutonsOptions:
   - {fileID: 584508538}
   - {fileID: 1586491875}
   - {fileID: 1726097865}
   - {fileID: 1431241248}
-  timerText: {fileID: 698700082}
-  scoreText: {fileID: 1069268083}
-  winText: {fileID: 662353115}
+  texteChronometre: {fileID: 698700082}
+  texteScore: {fileID: 1069268083}
+  finPartie: {fileID: 662353115}
   quitter: {fileID: 1035284687}
 --- !u!4 &1487575536
 Transform:

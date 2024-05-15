@@ -8,8 +8,11 @@ public class InteractibleEntree : MonoBehaviour, Interactible
 
     public void boutonPresse()
     {
-        ordinateur.Execute();
-        Debug.Log("Button pressed!");
+        if (!ordinateur.IsReponseTrouvee())
+        {
+            ordinateur.Execute();
+        }
+
     }
 
     public void InteractionDroite(Transform Joueur)

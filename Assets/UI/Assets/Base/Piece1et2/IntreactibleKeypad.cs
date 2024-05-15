@@ -8,8 +8,9 @@ public class IntreactibleKeypad : MonoBehaviour, Interactible
     public int nombre;
     public void boutonPresse()
     {
+        if (!keypad.IsReponseTrouvee()) { 
         keypad.Nombre(nombre);
-        Debug.Log("Button pressed!");
+        }
     }
 
     public void InteractionDroite(Transform Joueur)

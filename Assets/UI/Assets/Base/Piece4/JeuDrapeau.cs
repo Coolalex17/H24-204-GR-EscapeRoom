@@ -41,7 +41,7 @@ public class JeuDrapeau : MonoBehaviour
     {
         if (score >= 25)
         {
-            
+            PreferencesJoueur.FinirJeuDrapeaux();
             finPartie.gameObject.SetActive(true); // Show win message
             enTrainDeJouer = false; // Stop the game logic
             foreach (var button in boutonsOptions)

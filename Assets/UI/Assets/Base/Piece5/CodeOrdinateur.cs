@@ -6,6 +6,7 @@ public class CodeOrdinateur : MonoBehaviour
 {
     private string reponse = "221";
     [SerializeField] private Text Ans;
+    private bool reponseTrouvee = false;
 
 
 
@@ -23,11 +24,15 @@ public class CodeOrdinateur : MonoBehaviour
         if (Ans.text == reponse)
         {
             Ans.text = "Correct";
+            reponseTrouvee = true;
         }
         else
         {
             Ans.text = "Incorrect";
         }
     }
-
+    public bool IsReponseTrouvee()
+    {
+        return reponseTrouvee;
+    }
 }

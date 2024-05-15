@@ -9,9 +9,8 @@ public class Keypad : MonoBehaviour
     public string reponse;
     [SerializeField] private Text Ans;
     [SerializeField] private Animator Refregirateur;
-    [SerializeField] private Animator Coffre;
-
-
+   [SerializeField] private Animator Coffre;
+    private bool reponseTrouvee = false; 
 
 
     public void Nombre(int nombre)
@@ -28,17 +27,29 @@ public class Keypad : MonoBehaviour
             Ans.text = "Correct";
             Refregirateur.SetBool("Ouvert", true);
             Coffre.Play("TreasureChest_OPEN", 0);
+            reponseTrouvee = true;
             StartCoroutine("Stop");
-        } else
+          
+        }
+        else
         {
             Ans.text = "Incorrect";
         }
     }
     IEnumerator Stop()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.5f);
         Refregirateur.SetBool("Ouvert", false);
         Refregirateur.enabled = false;
     }
+
+
+    public bool IsReponseTrouvee()
+    {
+        return reponseTrouvee;
+    }
+
+  
+
 }
 

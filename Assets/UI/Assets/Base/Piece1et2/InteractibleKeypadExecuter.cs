@@ -9,8 +9,11 @@ public class InteractibleKeypadExecuter : MonoBehaviour, Interactible
 
     public void boutonPresse()
     {
-        keypad.Execute();
-        Debug.Log("Button pressed!");
+        if (!keypad.IsReponseTrouvee())
+        {
+            keypad.Execute();
+        }
+       
     }
 
     public void InteractionDroite(Transform Joueur)

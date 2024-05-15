@@ -7,9 +7,13 @@ public class InteractibleOrdi : MonoBehaviour, Interactible
     [SerializeField] private CodeOrdinateur ordinateur;
     public int nombre;
 
+
     public void boutonPresse()
     {
-        ordinateur.Nombre(nombre);
+        if (!ordinateur.IsReponseTrouvee())
+        {
+            ordinateur.Nombre(nombre);
+        }
 
     }
 
