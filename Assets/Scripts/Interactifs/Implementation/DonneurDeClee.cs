@@ -9,12 +9,12 @@ public class DonneurDeClee : MonoBehaviour, Interactible
     {
      
      Inventaire inventaireJoueur = Joueur.GetComponent<Inventaire>();
-        inventaireJoueur.AjouterItem(Inventaire.Items.CLEE_PORTE1,1);
+        inventaireJoueur.AjouterItem(Inventaire.Items.CLEE_ROUGE,1);
     }
 
     public void InteractionGauche(Transform Joueur)
     {
-        Debug.Log(Joueur.GetComponent<Inventaire>().VerifierPossesionItem(Inventaire.Items.CLEE_PORTE1));    
+        Debug.Log(Joueur.GetComponent<Inventaire>().VerifierPossesionItem(Inventaire.Items.CLEE_BLEU));    
     }
 
 }

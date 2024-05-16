@@ -119,6 +119,7 @@ public class BallPhysique : MonoBehaviour
             if (aiScore >= 2)
             {
                 GameOver("AI");
+                
             }
         }
     }
@@ -128,19 +129,19 @@ public class BallPhysique : MonoBehaviour
     private void GameOver(string winner)
     {
         Debug.Log(winner + " wins!");
+        AIScore.text = "0";
+        PlayerScore.text = "0";
 
         // Check if the Inventaire object is not null before calling AjouterItem
-        Inventaire inventaire = PreferencesJoueur.GetSavedInventaire();
-        if (inventaire != null)
-        {
-            inventaire.AjouterItem(Inventaire.Items.CLEE_PORTE2, 1);
-        }
-        else
-        {
-            Debug.LogWarning("Inventaire object is null!");
+        if (winner != "AI") {
+            Cursor.lockState = CursorLockMode.Confined;
+            if (!PreferencesJoueur.getFiniJeuSoccer()) {
+                PreferencesJoueur.GetSavedInventaire().Add(Inventaire.Items.CLEE_VERTE);
+            }
+            PreferencesJoueur.FinirJeuSoccer();
+            SceneManager.LoadScene("PartiFini");
         }
 
-        SceneManager.LoadScene("PartiFini");
     }
 
 

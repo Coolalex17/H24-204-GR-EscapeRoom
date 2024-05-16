@@ -38,7 +38,7 @@ public class MouvementJoueur : MonoBehaviour
         mouvementPermi = true;
         cameraJoueur.GetComponent<ControleCamera>().partirCamera();
     }
-    private void BoujerJoueur(){//Va bouger le joueur selon les touches selon la direction que le joueur a choisis 
+    private void BoujerJoueur(){//Va bouger le joueur selon les touches selon la direction que le joueur a choisi 
 
         //Transforme les Inputs du joueur en vecteur
         Vector3 DirectionMouvement = new Vector3();

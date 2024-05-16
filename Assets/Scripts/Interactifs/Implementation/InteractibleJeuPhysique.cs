@@ -15,6 +15,9 @@ public class InteractibleJeuPhysique : MonoBehaviour, Interactible
         //Appelle la metode du jeu de physique qui demare le jeu
         public void InteractionGauche(Transform Joueur)
         {
+        if (PreferencesJoueur.getFiniJeuPhysique()) {
+            return;
+        }
         jeuPhysique.debuterJeu(Joueur.GetComponent<MouvementJoueur>());
         }
 

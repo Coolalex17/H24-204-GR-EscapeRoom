@@ -10,6 +10,9 @@ public class InteractibleJeuSoccer : MonoBehaviour, Interactible
     }
 
     public void InteractionGauche(Transform Joueur) {
+        if(PreferencesJoueur.getFiniJeuSoccer()) {
+            return;
+        }
         SceneManager.LoadScene("3emJeu");
     }
 

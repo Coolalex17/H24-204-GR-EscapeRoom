@@ -40,7 +40,7 @@ public class ControlerHud : MonoBehaviour
     private void afficherInventaire()
     {
         ContenantInventaire.Clear();
-        Items[] InventaireTemp = PreferencesJoueur.GetSavedInventaire().ObtenirInventaire().ToArray();
+        Items[] InventaireTemp = PreferencesJoueur.GetSavedInventaire().ToArray();
 
         for (int i = 0;i < InventaireTemp.Length;i++)
         {
