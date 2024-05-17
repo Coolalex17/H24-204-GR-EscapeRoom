@@ -34,7 +34,7 @@ public class Keypad : MonoBehaviour //https://www.youtube.com/watch?v=TO0g5jyjpY
     {
         if (texteAAfficherSurKeypad.text == reponse)
         {
-            if (Ans.text == "706") {
+            if (texteAAfficherSurKeypad.text == "706") {
                 PreferencesJoueur.GetSavedInventaire().Add(Inventaire.Items.CLEE_BLANCHE);
             }
             // On affiche Correct sur le clavier

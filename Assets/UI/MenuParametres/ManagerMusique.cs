@@ -6,11 +6,11 @@ using UnityEngine.UI;
 /// <summary>
 /// Gère les paramètres de la musique dans le jeu.
 /// </summary>
-public class ManagerMusique : MonoBehaviour
+public class ManagerMusique : MonoBehaviour //https://www.youtube.com/watch?v=Xtfe5S9n4SI&t=1s
 {
-    private AudioSource audioSource; // Source audio utilisée pour jouer la musique.
+    public AudioSource audioSource; // Source audio utilisée pour jouer la musique.
     public Slider musiqueSlider; // Slider utilisé pour régler le volume de la musique.
-    public GameObject objetMusique; // GameObject contenant la musique.
+    private GameObject objetMusique; // GameObject contenant la musique.
     private float musiqueVolume = 1f; // Volume de la musique
 
     private void Start()
@@ -32,7 +32,7 @@ public class ManagerMusique : MonoBehaviour
     /// <summary>
     /// Met à jour le volume de la musique de l'audioSource et le sauvegarde dans les préférences du joueur.
     /// </summary>
-    private void SauvegarderMusique()
+    private void Update()
     {
         audioSource.volume = musiqueVolume; // Met à jour le volume de la musique.
         PlayerPrefs.SetFloat("volume", musiqueVolume); // Sauvegarde le volume dans les préférences du joueur.
@@ -42,7 +42,7 @@ public class ManagerMusique : MonoBehaviour
     /// Met à jour le volume de la musique en fonction de la valeur du Slider.
     /// </summary>
     /// <param name="volume">Nouvelle valeur de volume.</param>
-    private void MettreAJourVolume(float volume)
+    public void MettreAJourVolume(float volume)
     {
         musiqueVolume = volume; 
     }

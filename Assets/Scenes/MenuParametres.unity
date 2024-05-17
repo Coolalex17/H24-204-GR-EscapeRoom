@@ -2317,8 +2317,8 @@ GameObject:
   m_Component:
   - component: {fileID: 976939196}
   - component: {fileID: 976939199}
-  - component: {fileID: 976939200}
   - component: {fileID: 976939201}
+  - component: {fileID: 976939202}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -2358,20 +2358,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   qualiteDropdown: {fileID: 1346033815}
---- !u!114 &976939200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 976939195}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eda7d7f2c8c64794f8fcaf019b555121, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  musiqueSlider: {fileID: 7869358446559108778}
-  objetMusique: {fileID: 0}
 --- !u!114 &976939201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2386,6 +2372,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effetsSlider: {fileID: 5951045367676551668}
   audioSource: {fileID: 103748643}
+--- !u!114 &976939202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976939195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eda7d7f2c8c64794f8fcaf019b555121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  musiqueSlider: {fileID: 2677555888205681013, guid: 8f8eb3f35d4b73442b348695ba4f53d1, type: 3}
 --- !u!1 &1060424348
 GameObject:
   m_ObjectHideFlags: 0
@@ -4254,12 +4254,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1722587901458972784, guid: d0be31b9208a8d54cbbcf44b0833e6b8, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1722587901458972784, guid: d0be31b9208a8d54cbbcf44b0833e6b8, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 976939195}
+      objectReference: {fileID: 0}
     - target: {fileID: 1722587901458972784, guid: d0be31b9208a8d54cbbcf44b0833e6b8, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -4270,11 +4270,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1722587901458972784, guid: d0be31b9208a8d54cbbcf44b0833e6b8, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ManagerSliderEffetsSonores, Assembly-CSharp
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1722587901458972784, guid: d0be31b9208a8d54cbbcf44b0833e6b8, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5339960038441098805, guid: d0be31b9208a8d54cbbcf44b0833e6b8, type: 3}
       propertyPath: m_Pivot.x
@@ -4423,10 +4423,10 @@ PrefabInstance:
     - target: {fileID: 2677555888205681013, guid: 8f8eb3f35d4b73442b348695ba4f53d1, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 976939200}
+      objectReference: {fileID: 976939202}
     - target: {fileID: 2677555888205681013, guid: 8f8eb3f35d4b73442b348695ba4f53d1, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UpdateVolume
+      value: MettreAJourVolume
       objectReference: {fileID: 0}
     - target: {fileID: 2677555888205681013, guid: 8f8eb3f35d4b73442b348695ba4f53d1, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -4529,17 +4529,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f8eb3f35d4b73442b348695ba4f53d1, type: 3}
---- !u!114 &7869358446559108778 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2677555888205681013, guid: 8f8eb3f35d4b73442b348695ba4f53d1, type: 3}
-  m_PrefabInstance: {fileID: 7869358446559108777}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
