@@ -20,7 +20,7 @@ public class InteractiblePorteNoir : MonoBehaviour, Interactible
         }
     }
     public void InteractionGauche(Transform Joueur) {
-        if (Joueur.GetComponent<Inventaire>().EnleverItem(Inventaire.Items.CLEE_JAUNE, 1)) {
+        if (Joueur.GetComponent<Inventaire>().EnleverItem(Inventaire.Items.CLEE_NOIR, 1)) {
             ouvert = true;
             Debug.Log("Ouvert");
             Cadena.SetActive(false) ;

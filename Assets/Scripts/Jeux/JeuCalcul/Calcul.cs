@@ -108,8 +108,8 @@ public class Calcul : MonoBehaviour //ChatGPT
             else if (choix == 4)
             {
                 // Si le choix est 4, on génére deux nombres entre 1 et 200 et on crée une division
-                a = Random.Range(1, 200);
-                b = Random.Range(1, 200);
+                a = Random.Range(1, 500);
+                b = Random.Range(1, 500);
                 if (a > b)
                 {
                     Division(a, b);

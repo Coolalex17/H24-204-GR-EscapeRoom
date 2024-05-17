@@ -34,8 +34,9 @@ public class Keypad : MonoBehaviour //https://www.youtube.com/watch?v=TO0g5jyjpY
     {
         if (texteAAfficherSurKeypad.text == reponse)
         {
-            if (texteAAfficherSurKeypad.text == "706") {
-                PreferencesJoueur.GetSavedInventaire().Add(Inventaire.Items.CLEE_BLANCHE);
+            if (texteAAfficherSurKeypad.text == "6878")
+            {
+                PreferencesJoueur.GetSavedInventaire().Add(Inventaire.Items.CLEE_NOIR);
             }
             // On affiche Correct sur le clavier
             texteAAfficherSurKeypad.text = "Correct";
@@ -59,7 +60,7 @@ public class Keypad : MonoBehaviour //https://www.youtube.com/watch?v=TO0g5jyjpY
     /// </summary>
     IEnumerator Stop()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         refregirateur.SetBool("Ouvert", false);
         refregirateur.enabled = false;
     }

@@ -22,7 +22,7 @@ public class CodeOrdinateur : MonoBehaviour
     public void Nombre(int nombre)
     {
         // Si le message affiché est "Incorrect" ou "Correct", le réinitialiser.
-        if (messageAAfficherSurOrdi.text == "Incorrect" || messageAAfficherSurOrdi.text == "Correct")
+        if (messageAAfficherSurOrdi.text == "Incorrect" || messageAAfficherSurOrdi.text == "Globe à trouver")
         {
             messageAAfficherSurOrdi.text = "";
         }
@@ -32,13 +32,14 @@ public class CodeOrdinateur : MonoBehaviour
     }
 
     /// <summary>
-    /// Vérifie si le message affiché correspond à la réponse correcte.
+    /// Vérifie si le message affiché correspond à la réponse correcte. Si c'est le cas, une clé bleue est donnée au jouer.
     /// </summary>
     public void Execute()
     {
         if (messageAAfficherSurOrdi.text == REPONSE)
         {
             messageAAfficherSurOrdi.text = "Correct"; // Si le bon code est rentré, on affiche correcte sur l'ordi
+            PreferencesJoueur.GetSavedInventaire().Add(Inventaire.Items.CLEE_BLEU);
             reponseTrouvee = true;
         }
         else

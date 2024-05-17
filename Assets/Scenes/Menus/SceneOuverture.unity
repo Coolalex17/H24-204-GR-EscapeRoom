@@ -611,14 +611,13 @@ MonoBehaviour:
     vers 16h00. Or, une fois rentr\xE9 dans l\u2019\xE9cole, vous recevez un message
     de votre ami comme quoi il ne peut finalement pas se pr\xE9senter. Vous d\xE9cidez
     alors de rentrer chez vous, mais la porte d\u2019entr\xE9e ne s\u2019ouvre pas.
-    Pour l\u2019ouvrir, vous devez parcourir les salles longeant le hall de l\u2019\xE9cole
+    Pour l\u2019ouvrir, vous devez parcourir les salles longeant le corridor de l\u2019\xE9cole
     afin d\u2019y trouver des jeux et des \xE9nigmes \xE0 r\xE9soudre. En les r\xE9solvant,
-    vous pourrez ainsi recevoir des cl\xE9s afin d\u2019ouvrir la porte d\u2019entr\xE9e.
-    Il est aussi important \xE0 noter que seules les pi\xE8ces contenant des jeux
-    et des \xE9nigmes seront ouvertes. Une fois tous les jeux et \xE9nigmes r\xE9solus
-    d\u2019une pi\xE8ce, celle-ci ne vous saura plus accessible. Enfin, un gardien
-    de s\xE9curit\xE9 v\xE9rifie l\u2019\xE9cole \xE0 chaque jour vers 17h00. Vous
-    n\u2019avez donc que n heures pour trouver toutes les cl\xE9s et fuir!"
+    vous pourrez ainsi recevoir des cl\xE9s afin d\u2019ouvrir d'autres pi\xE8ces
+    ou la porte d\u2019entr\xE9e.  Une fois tous les jeux et \xE9nigmes r\xE9solus
+    d\u2019une pi\xE8ce, ils ne vous seront plus accessibles. Enfin, un gardien de
+    s\xE9curit\xE9 v\xE9rifie l\u2019\xE9cole \xE0 chaque jour vers 17h00. Vous n\u2019avez
+    donc qu'une heure pour trouver toutes les cl\xE9s et fuir!"
 --- !u!222 &905867192
 CanvasRenderer:
   m_ObjectHideFlags: 0

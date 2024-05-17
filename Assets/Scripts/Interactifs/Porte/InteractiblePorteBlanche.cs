@@ -13,8 +13,8 @@ public class InteractiblePorteBlanche : MonoBehaviour, Interactible
     [SerializeField] GameObject Cadena;
     private Animator anim;
     private bool isOpen = false;
-    public Inventaire.Items itemRequis;
-    public int quantiteeItemRequis;
+    //public Inventaire.Items itemRequis;
+    //public int quantiteeItemRequis;
 
 
     public void InteractionDroite(Transform Joueur) {

@@ -44,6 +44,9 @@ public class ManagerMusique : MonoBehaviour //https://www.youtube.com/watch?v=Xt
     /// <param name="volume">Nouvelle valeur de volume.</param>
     public void MettreAJourVolume(float volume)
     {
-        musiqueVolume = volume; 
+        musiqueVolume = volume;
+        PlayerPrefs.SetFloat("musique", volume);
+        // Sauvegarde les préférences.
+        PlayerPrefs.Save();
     }
 }
