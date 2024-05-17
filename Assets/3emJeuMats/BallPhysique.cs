@@ -102,7 +102,7 @@ public class BallPhysique : MonoBehaviour
             Debug.Log("Player Score: " + playerScore);
 
            
-            if (playerScore >= 2)
+            if (playerScore >= 5)
             {
                 GameOver("Player");
             }
@@ -116,7 +116,7 @@ public class BallPhysique : MonoBehaviour
             Debug.Log("AI Score: " + aiScore);
 
             
-            if (aiScore >= 2)
+            if (aiScore >= 5)
             {
                 GameOver("AI");
             }
