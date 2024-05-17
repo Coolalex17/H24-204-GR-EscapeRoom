@@ -36,6 +36,7 @@ public class ManagerMusique : MonoBehaviour //https://www.youtube.com/watch?v=Xt
     {
         audioSource.volume = musiqueVolume; // Met à jour le volume de la musique.
         PlayerPrefs.SetFloat("volume", musiqueVolume); // Sauvegarde le volume dans les préférences du joueur.
+       
     }
 
     /// <summary>
