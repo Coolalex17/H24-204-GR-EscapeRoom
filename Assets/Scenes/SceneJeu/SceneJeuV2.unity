@@ -8977,7 +8977,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 252629911600637343, guid: 974c90fb5c85e1145b28c692035ab2f2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.594
+      value: 2.8066
       objectReference: {fileID: 0}
     - target: {fileID: 252629911600637343, guid: 974c90fb5c85e1145b28c692035ab2f2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12443,7 +12443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334c573155fbf0d42a4c5589c7499cfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cadena: {fileID: 558556380}
+  Cadena: {fileID: 807738315}
   itemRequis: 3
   quantiteeItemRequis: 1
 --- !u!1001 &645371902
@@ -65450,8 +65450,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.1887546, y: 2.11931, z: 0.6542522}
-  m_Center: {x: 0, y: -1.05216, z: 0.32712585}
+  m_Size: {x: 4.1887546, y: 2.11931, z: 1.4845055}
+  m_Center: {x: 0, y: -1.05216, z: -0.35668993}
 --- !u!65 &3690917063873057928
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -65471,8 +65471,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.1887546, y: 2.1193063, z: 1.40181}
-  m_Center: {x: 0, y: 0.0025271177, z: 0.700905}
+  m_Size: {x: 4.1887546, y: 2.1193063, z: 0.47855237}
+  m_Center: {x: 0, y: 0.0025271177, z: 0.239276}
 --- !u!33 &3696806757603085370
 MeshFilter:
   m_ObjectHideFlags: 0

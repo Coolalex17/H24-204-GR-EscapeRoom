@@ -1,8 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
-using UnityEngine.ProBuilder.MeshOperations;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Calcul : MonoBehaviour //ChatGpt
