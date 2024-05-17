@@ -19,16 +19,17 @@ public class ControleurUIMenuPause : MonoBehaviour
 
     public void BtnContinuer()
     {
-        SceneManager.LoadScene("ScenePrincipale");
+        SceneManager.LoadScene("SceneJeuV2");
     }
 
     public void BtnParametres()
     {
-        SceneManager.LoadScene("MenuOption");
+        PlayerPrefs.SetInt("SceneEnregistre", SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("MenuParametres");
     }
 
     public void BtnQuitter()
     {
-        SceneManager.LoadScene("MenuPrincipal");
+        Application.Quit();
     }
 }
