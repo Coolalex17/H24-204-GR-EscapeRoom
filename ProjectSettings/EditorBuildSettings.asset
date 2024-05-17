@@ -36,10 +36,10 @@ EditorBuildSettings:
     path: Assets/Scenes/JeuSoccer/3emJeu.unity
     guid: af8d1d90b21bff344938dcdcfaad5795
   - enabled: 1
-    path: Assets/UI/Assets/Base/DeuxiemeSalleClasse/JeuMath.unity
+    path: Assets/Scenes/SceneJeuCalcul/JeuMath.unity
     guid: 6dedcd3f57ccfe44f9591003495832bc
   - enabled: 1
-    path: Assets/UI/Assets/Base/SalleProfs/JeuDrapeau.unity
+    path: Assets/Scenes/SceneJeuDrapeaux/JeuDrapeau.unity
     guid: aa3124e7a69b1374ab5bf1f99301ff0a
   - enabled: 1
     path: Assets/Scenes/JeuSoccer/PartiFini.unity

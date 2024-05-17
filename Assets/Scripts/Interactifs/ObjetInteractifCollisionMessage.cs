@@ -6,7 +6,7 @@ using UnityEngine;
 /// <summary>
 /// Affiche un message lorsque le joueur entre en collision avec cet objet interactif.
 /// </summary>
-public class ObjetInteractifMessage : MonoBehaviour // ChatGPT
+public class ObjetInteractifCollisionMessage : MonoBehaviour // ChatGPT
 {
     public TextMeshPro messageTexte; // UIElement qui affiche le messageAMontrer.
     public string messageAMontrer; // Message à afficher défini dans l'inspecteur.
