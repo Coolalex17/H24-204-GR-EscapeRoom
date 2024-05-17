@@ -6,13 +6,14 @@ public class GrilleDeplacement : MonoBehaviour
 {
     public GameObject controlleur;
 
-    GameObject reference = null; //la grille de déplacement de chaque pièce s'affiche quand on clique sur la pièce, donc chaque grille de déplacement doit avoir sa pièce référence
+    GameObject reference = null; //la grille de déplacement de chaque pièce s'affiche quand on clique sur la pièce,
+                                 //donc chaque grille de déplacement doit avoir sa pièce référence
 
     // Positions sur la grille, pas dans le monde
     int matriceX; 
     int matriceY;
 
-    // vérifier si le déplacement qu'on a fait attaque une autre pièce
+    // Vérifier si le déplacement qu'on a fait attaque une autre pièce
     public bool attaque = false;
 
     public void Start()
@@ -29,7 +30,7 @@ public class GrilleDeplacement : MonoBehaviour
         controlleur = GameObject.FindGameObjectWithTag("GameController");
        
 
-        // Check if the move matches the correct move
+        // Vérifier si le déplacement concorde avec le bon déplacement
         if (reference.GetComponent<Piece>().GetXGrille() == controlleur.GetComponent<Jeu>().GetCorrectMoveStart().x &&
             reference.GetComponent<Piece>().GetYGrille() == controlleur.GetComponent<Jeu>().GetCorrectMoveStart().y &&
             matriceX == controlleur.GetComponent<Jeu>().GetCorrectMoveEnd().x && matriceY == controlleur.GetComponent<Jeu>().GetCorrectMoveEnd().y)
@@ -38,9 +39,9 @@ public class GrilleDeplacement : MonoBehaviour
         }
         else
         {
-            // Move is incorrect, shake the screen and do not update piece's position
+            // Si le déplacemenet est incorrect, faire bouger l'écran pour donner l'effet que la réponse est mauvaise
             StartCoroutine(controlleur.GetComponent<Jeu>().ShakeScreen());
-            return; // Exit the method without making the move
+            return; // Quitter la méthode sans effectuer le déplacement
         }
 
 

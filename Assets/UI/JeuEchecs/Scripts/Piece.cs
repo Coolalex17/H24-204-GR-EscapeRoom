@@ -20,7 +20,7 @@ public class Piece : MonoBehaviour
     public Sprite roi_noir, dame_noir, tour_noir, fou_noir, cavalier_noir, pion_noir;
     public Sprite roi_blanc, dame_blanc, tour_blanc, fou_blanc, cavalier_blanc, pion_blanc;
 
-    // 
+   
     public void Activer() {
         controlleur = GameObject.FindGameObjectWithTag("GameController");
 
@@ -61,22 +61,6 @@ public class Piece : MonoBehaviour
         x += vraieOrigineGrille + tailleDemieCase + tailleCase;
         y += vraieOrigineGrille + tailleDemieCase + tailleCase;
 
-
-
-        //x = vraieOrigineGrille + xGrille * tailleCase + tailleDemieCase + tailleCase; // optimize this
-        //y = vraieOrigineGrille + yGrille * tailleCase + tailleDemieCase + tailleCase;
-
-
-        /*
-        x += -13.5f;
-        y += -13.5f;
-
-        x *= 2.7f;
-        y *= 2.7f;
-
-        x += 1.35f;
-        y += 1.35f;
-        */
 
         this.transform.position = new Vector3(x, y, -1.0f);
     }

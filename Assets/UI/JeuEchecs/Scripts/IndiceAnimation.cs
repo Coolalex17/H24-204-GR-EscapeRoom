@@ -56,6 +56,7 @@ public class IndiceAnimation : MonoBehaviour
 
     }
 
+    // Affiche l'indice de chiffre au centre de l'écran pendant quelques secondes
     public bool ShowText()
     {
         float tempsTextShow = Time.time - tempsFinDuJeu;
@@ -67,6 +68,7 @@ public class IndiceAnimation : MonoBehaviour
         return false;
     }
 
+    // Effectue l'animation de l'indice qui va se placer dans le coin de l'écran
     public void AnimerTexte()
     {
         float timeElapsed = Time.time - debutTempsAnimation;
