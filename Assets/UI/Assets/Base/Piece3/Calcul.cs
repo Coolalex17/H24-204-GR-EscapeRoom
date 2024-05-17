@@ -99,6 +99,7 @@ public class Calcul : MonoBehaviour //ChatGpt
         }
         else
         {
+
             PartieGagnee(); // Le joueur gagne le jeu s'il a un score de 7
         }
     }
@@ -145,6 +146,7 @@ public class Calcul : MonoBehaviour //ChatGpt
    private void PartieGagnee()
     {
         // Implète la logique quand le joueur gagne
+        PreferencesJoueur.GetSavedInventaire().Add(Inventaire.Items.CLEE_ORANGE);
         tempsEcoule = false;
         questionTexte.text = "Vous avez réussi! Cliquez sur Quitter";
         reponseBouton.interactable = false; // On empĉhe le joueur d'interagir avec le bouton s'il a gagné. 

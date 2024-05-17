@@ -16,6 +16,16 @@ public static class PreferencesJoueur
     private static bool FiniJeuDrapeaux = false;
     private static bool FiniJeuSoccer = false;
     private static bool FiniJeuPhysique = false;
+    private static bool FiniJeuDrapeau = false;
+
+    public static bool getFiniJeuDrapeau() {
+        return FiniJeuDrapeau;
+    }
+    public static void FinirJeuDrapeau() {
+        FiniJeuDrapeau = true;
+    }
+
+
     public static bool getFiniJeuPhysique() {
         return FiniJeuPhysique;
     }

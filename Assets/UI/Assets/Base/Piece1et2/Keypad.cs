@@ -24,12 +24,17 @@ public class Keypad : MonoBehaviour
     {
         if (Ans.text == reponse)
         {
+            if (Ans.text == "706") {
+                PreferencesJoueur.GetSavedInventaire().Add(Inventaire.Items.CLEE_BLANCHE);
+            }
+
             Ans.text = "Correct";
             Refregirateur.SetBool("Ouvert", true);
             Coffre.Play("TreasureChest_OPEN", 0);
             reponseTrouvee = true;
             StartCoroutine("Stop");
-          
+
+            
         }
         else
         {

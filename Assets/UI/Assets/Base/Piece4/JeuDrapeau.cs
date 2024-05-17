@@ -41,6 +41,7 @@ public class JeuDrapeau : MonoBehaviour
     {
         if (score >= 25)
         {
+            PreferencesJoueur.GetSavedInventaire().Add(Inventaire.Items.CLEE_JAUNE);
             PreferencesJoueur.FinirJeuDrapeaux();
             finPartie.gameObject.SetActive(true); // Show win message
             enTrainDeJouer = false; // Stop the game logic

@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractiblePorteGrise : MonoBehaviour, Interactible
+public class InteractiblePorteOrange : MonoBehaviour, Interactible
 {
     private static bool ouvert = false;
     [SerializeField] GameObject Cadena;
     private Animator anim;
     private bool isOpen = false;
-    public Inventaire.Items itemRequis;
-    public int quantiteeItemRequis;
+
 
     public void InteractionDroite(Transform Joueur) {
         //pas utile presentement
@@ -21,7 +20,7 @@ public class InteractiblePorteGrise : MonoBehaviour, Interactible
         }
     }
     public void InteractionGauche(Transform Joueur) {
-        if (Joueur.GetComponent<Inventaire>().EnleverItem(Inventaire.Items.CLEE_GRISE, 1)) {
+        if (Joueur.GetComponent<Inventaire>().EnleverItem(Inventaire.Items.CLEE_ORANGE, 1)) {
             ouvert = true;
             Debug.Log("Ouvert");
             Cadena.SetActive(false) ;

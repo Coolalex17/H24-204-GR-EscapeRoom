@@ -11,6 +11,7 @@ public class PorteFinale : MonoBehaviour, Interactible
     [SerializeField] GameObject ImageCadenaRouge;
     [SerializeField] GameObject ImageCadenaVert;
     [SerializeField] GameObject ImageCadenaBleu;
+    [SerializeField] GameObject ImageFin;
 
     public void InteractionDroite(Transform Joueur) {
         //pas utile presentement
@@ -42,7 +43,7 @@ public class PorteFinale : MonoBehaviour, Interactible
         Debug.Log(CadenaBleu);
         Debug.Log(CadenaRouge);
         if(CadenaBleu & CadenaVert & CadenaRouge) {
-            Debug.Log("FiniJeu");
+            ImageFin.SetActive(true);
         }
 
         Start();
