@@ -4,20 +4,20 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Contrôle le fonctionnement d'un clavier numérique pour ouvrir un réfrigérateur et un coffre.
+/// ContrÃ´le le fonctionnement d'un clavier numÃ©rique pour ouvrir un rÃ©frigÃ©rateur et un coffre.
 /// </summary>
 public class Keypad : MonoBehaviour //https://www.youtube.com/watch?v=TO0g5jyjpYU
 {
-    public string reponse; // La réponse à entrer dans le clavier (code tapé).
-    [SerializeField] private Text texteAAfficherSurKeypad; // Texte affiché sur le clavier.
-    [SerializeField] private Animator refregirateur; // Animator pour le réfrigérateur.
+    public string reponse; // La rÃ©ponse Ã  entrer dans le clavier (code tapÃ©).
+    [SerializeField] private Text texteAAfficherSurKeypad; // Texte affichÃ© sur le clavier.
+    [SerializeField] private Animator refregirateur; // Animator pour le rÃ©frigÃ©rateur.
     [SerializeField] private Animator coffre; // Animator pour le coffre.
-    private bool reponseTrouvee = false; // Indique si la réponse (code tapé) a été trouvée.
+    private bool reponseTrouvee = false; // Indique si la rÃ©ponse (code tapÃ©) a Ã©tÃ© trouvÃ©e.
 
     /// <summary>
-    /// Ajoute au texte à afficher sur le clavier le nombre tapé par le joueur.
+    /// Ajoute au texte Ã  afficher sur le clavier le nombre tapÃ© par le joueur.
     /// </summary>
-    /// <param name="nombre">Le nombre à ajouter (nombre tapé du clavier par le joueur).</param>
+    /// <param name="nombre">Le nombre Ã  ajouter (nombre tapÃ© du clavier par le joueur).</param>
     public void Nombre(int nombre)
     {
         if (texteAAfficherSurKeypad.text == "Incorrect" || texteAAfficherSurKeypad.text == "Correct")
@@ -28,15 +28,18 @@ public class Keypad : MonoBehaviour //https://www.youtube.com/watch?v=TO0g5jyjpY
     }
 
     /// <summary>
-    /// Exécute la séquence de nombres entrée par le joueur et vérifie si elle est correcte.
+    /// ExÃ©cute la sÃ©quence de nombres entrÃ©e par le joueur et vÃ©rifie si elle est correcte.
     /// </summary>
     public void Executer()
     {
         if (texteAAfficherSurKeypad.text == reponse)
         {
+            if (Ans.text == "706") {
+                PreferencesJoueur.GetSavedInventaire().Add(Inventaire.Items.CLEE_BLANCHE);
+            }
             // On affiche Correct sur le clavier
             texteAAfficherSurKeypad.text = "Correct";
-            //On ouvre la porte du réfrégirateur
+            //On ouvre la porte du rÃ©frÃ©girateur
             refregirateur.SetBool("Ouvert", true);
             //On ouvre la porte du coffre
             coffre.Play("TreasureChest_OPEN", 0);
@@ -45,14 +48,14 @@ public class Keypad : MonoBehaviour //https://www.youtube.com/watch?v=TO0g5jyjpY
         }
         else
         {
-            // On affiche Incorrect sur le clavier, car le bon code n'a pas été trouvé
+            // On affiche Incorrect sur le clavier, car le bon code n'a pas Ã©tÃ© trouvÃ©
             texteAAfficherSurKeypad.text = "Incorrect";
         }
     }
 
     /// <summary>
-    /// Désactive l'ouverture de la porte du réfrigérateur après un court délai
-    /// pour l'empêcher de s'ouvrir et se fermer continuellement.
+    /// DÃ©sactive l'ouverture de la porte du rÃ©frigÃ©rateur aprÃ¨s un court dÃ©lai
+    /// pour l'empÃªcher de s'ouvrir et se fermer continuellement.
     /// </summary>
     IEnumerator Stop()
     {
@@ -62,9 +65,9 @@ public class Keypad : MonoBehaviour //https://www.youtube.com/watch?v=TO0g5jyjpY
     }
 
     /// <summary>
-    /// Indique si la réponse a été trouvée avec succès.
+    /// Indique si la rÃ©ponse a Ã©tÃ© trouvÃ©e avec succÃ¨s.
     /// </summary>
-    /// <returns>Vrai si la réponse a été trouvée, sinon faux.</returns>
+    /// <returns>Vrai si la rÃ©ponse a Ã©tÃ© trouvÃ©e, sinon faux.</returns>
     public bool IsReponseTrouvee()
     {
         return reponseTrouvee;

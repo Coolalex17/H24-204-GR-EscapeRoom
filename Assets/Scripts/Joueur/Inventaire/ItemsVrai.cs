@@ -13,8 +13,14 @@ public partial class Inventaire
 
     //Liste de tout les items qui peuvent etre donne au joueur
     public enum Items{
-        CLEE_PORTE1,
-        CLEE_PORTE2,
+        CLEE_ROUGE,
+        CLEE_VERTE,
+        CLEE_BLEU,
+        CLEE_GRISE,
+        CLEE_JAUNE,
+        CLEE_NOIR,
+        CLEE_ORANGE,
+        CLEE_BLANCHE
     }
 
     //est appele pour afficher linventaire du joueur correctement

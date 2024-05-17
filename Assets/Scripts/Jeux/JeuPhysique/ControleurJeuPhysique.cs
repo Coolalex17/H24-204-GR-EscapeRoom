@@ -98,7 +98,8 @@ public class ControleurJeuPhysique : MonoBehaviour
         Destroy(verificateur);
         Destroy(cercleVert);
         mouvementJoueur.demarerJoueur();
-        PreferencesJoueur.GetSavedInventaire().AjouterItem(Inventaire.Items.CLEE_PORTE1,1);
+        PreferencesJoueur.GetSavedInventaire().Add(Inventaire.Items.CLEE_ROUGE);
+        PreferencesJoueur.FinirJeuPhysique();
     }
     private void creerVerificateurDistance(){
         distanceValidation = Random.Range(35, 60) + planete.transform.localScale.x;

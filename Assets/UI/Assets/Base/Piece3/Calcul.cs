@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 using UnityEngine.SceneManagement;
 
 /// <summary>
@@ -184,7 +183,11 @@ public class Calcul : MonoBehaviour //ChatGPT
     /// </summary>
     private void PartieGagnee()
     {
+
+
+
         // Arrête le chronomètre et affiche un message de victoire.
+        PreferencesJoueur.GetSavedInventaire().Add(Inventaire.Items.CLEE_ORANGE);
         tempsEcoule = false;
         questionTexte.text = "Vous avez réussi! Cliquez sur Quitter";
         reponseBouton.interactable = false; // Désactive le bouton de réponse.

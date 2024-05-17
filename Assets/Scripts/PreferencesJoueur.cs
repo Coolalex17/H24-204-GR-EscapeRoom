@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Services.Analytics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,12 +8,36 @@ public static class PreferencesJoueur
 {
     private static float SensibiliteeCamera = 100;
     private static Vector3 SavedPlayerPosition = new Vector3(0, 3f, -7);
-    private static Inventaire SavedInventaire;
+    private static List<Inventaire.Items> SavedInventaire;
     private static float TempsPartie;
     private static int ScenePrecedente;
     private static bool FiniJeuEchec = false;
     private static bool FiniJeuCalcul = false;
     private static bool FiniJeuDrapeaux = false;
+    private static bool FiniJeuSoccer = false;
+    private static bool FiniJeuPhysique = false;
+    private static bool FiniJeuDrapeau = false;
+
+    public static bool getFiniJeuDrapeau() {
+        return FiniJeuDrapeau;
+    }
+    public static void FinirJeuDrapeau() {
+        FiniJeuDrapeau = true;
+    }
+
+
+    public static bool getFiniJeuPhysique() {
+        return FiniJeuPhysique;
+    }
+    public static void FinirJeuPhysique() {
+        FiniJeuPhysique = true;
+    }
+    public static bool getFiniJeuSoccer() {
+        return FiniJeuSoccer;
+    }
+    public static void FinirJeuSoccer() {
+        FiniJeuSoccer = true;
+    }
 
     public static bool getFiniJeuEchec() {
         return FiniJeuEchec;
@@ -50,9 +75,9 @@ public static class PreferencesJoueur
     public static Vector3 GetSavedPLayerPosition() {
         return SavedPlayerPosition;
     }
-    public static Inventaire GetSavedInventaire() {
+    public static List<Inventaire.Items> GetSavedInventaire() {
         if (SavedInventaire == null) {
-            SavedInventaire = new Inventaire();
+            SavedInventaire = new List<Inventaire.Items>();
         }
         return SavedInventaire;
     }
@@ -60,7 +85,7 @@ public static class PreferencesJoueur
         SavedPlayerPosition = position;
     }
     public static void SaveInventaire(Inventaire inventaire) {
-        SavedInventaire = inventaire;
+        SavedInventaire = inventaire.ObtenirInventaire();
     }
 
 

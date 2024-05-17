@@ -7,8 +7,9 @@ public partial class Inventaire : MonoBehaviour
 
     void Start()
     {
-        ConteneurInventaire = new List<Items>();
+        ConteneurInventaire = PreferencesJoueur.GetSavedInventaire();
     }
+    
     public List<Items> ObtenirInventaire()
     {
         return ConteneurInventaire;
@@ -22,8 +23,10 @@ public partial class Inventaire : MonoBehaviour
         int QuantiteeItems = 0;
         Items[] InventaireTemp = ConteneurInventaire.ToArray();
         for (int i = 0;i < InventaireTemp.Length; i++){
+
             if (InventaireTemp[i] == item){
                 QuantiteeItems++;
+                
             }
         }
         return QuantiteeItems;
@@ -37,6 +40,7 @@ public partial class Inventaire : MonoBehaviour
     /// <returns>Return false si l'inventaire ne possede pas la quantitee ditem requis</returns>
     public bool EnleverItem(Items item,int Quantitee){
        int QuantiteeRestante = VerifierPossesionItem(item);
+        Debug.Log(QuantiteeRestante);
        if (QuantiteeRestante < Quantitee){
             return false;
        }

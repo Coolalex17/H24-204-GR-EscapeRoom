@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Classe pour gÈrer le jeu de reconnaissance de drapeaux.
+/// Classe pour g√©rer le jeu de reconnaissance de drapeaux.
 /// </summary>
 public class JeuDrapeau : MonoBehaviour
 {
@@ -12,16 +12,16 @@ public class JeuDrapeau : MonoBehaviour
     public Image drapeauImage; // Image pour afficher le drapeau
     public List<Sprite> listeDrapeaux; // Liste des sprites de drapeaux
     public Button[] boutonsOptions; // Boutons pour afficher les noms des pays
-    public Text texteChronometre; // Texte pour afficher le chronomËtre
+    public Text texteChronometre; // Texte pour afficher le chronom√®tre
     public Text texteScore; // Texte pour afficher le score
     public Text finPartie; // Texte pour afficher le message de fin de partie
     public Button quitter; // Bouton pour quitter le jeu
-    private int bonIndex; // Index de la bonne rÈponse de nom du drapeau affichÈ
+    private int bonIndex; // Index de la bonne r√©ponse de nom du drapeau affich√©
     private int score = 0; // Score du joueur
-    private bool enTrainDeJouer = true; // Indicateur de l'Ètat du jeu
+    private bool enTrainDeJouer = true; // Indicateur de l'√©tat du jeu
 
     /// <summary>
-    /// MÈthode appelÈe au dÈmarrage du jeu.
+    /// M√©thode appel√©e au d√©marrage du jeu.
     /// Initialise le score et affiche le premier drapeau.
     /// </summary>
     void Start()
@@ -31,8 +31,8 @@ public class JeuDrapeau : MonoBehaviour
     }
 
     /// <summary>
-    /// MÈthode appelÈe ‡ chaque frame.
-    /// GËre le chronomËtre et le passage au drapeau suivant.
+    /// M√©thode appel√©e √† chaque frame.
+    /// G√®re le chronom√®tre et le passage au drapeau suivant.
     /// </summary>
     void Update()
     {
@@ -41,7 +41,7 @@ public class JeuDrapeau : MonoBehaviour
         chronometre -= Time.deltaTime;
         texteChronometre.text = Mathf.Round(chronometre).ToString();
 
-        // Si 5 secondes ont ÈtÈ ÈcoulÈes, on gÈnËre un nouveau drapeau.
+        // Si 5 secondes ont √©t√© √©coul√©es, on g√©n√®re un nouveau drapeau.
         if (chronometre <= 0)
         {
             ProchainDrapeau();
@@ -49,34 +49,35 @@ public class JeuDrapeau : MonoBehaviour
     }
 
     /// <summary>
-    /// SÈlectionne et affiche un nouveau drapeau, puis rÈinitialise le chronomËtre.
+    /// S√©lectionne et affiche un nouveau drapeau, puis r√©initialise le chronom√®tre.
     /// </summary>
     private void ProchainDrapeau()
     {
-        // VÈrifie si le joueur a atteint le score nÈcessaire pour gagner
+        // V√©rifie si le joueur a atteint le score n√©cessaire pour gagner
         if (score >= 25)
         {
-            FinirJeu(); // Appelle la mÈthode pour terminer le jeu
+            FinirJeu(); // Appelle la m√©thode pour terminer le jeu
+
             return;
         }
 
-        // RÈinitialise le chronomËtre ‡ 5 secondes
+        // R√©initialise le chronom√®tre √† 5 secondes
         chronometre = 5.0f;
 
-        // SÈlectionne un index alÈatoire pour choisir un drapeau dans la liste
+        // S√©lectionne un index al√©atoire pour choisir un drapeau dans la liste
         int indexDrapeau = Random.Range(0, listeDrapeaux.Count);
-        drapeauImage.sprite = listeDrapeaux[indexDrapeau]; // Met ‡ jour l'image du drapeau
+        drapeauImage.sprite = listeDrapeaux[indexDrapeau]; // Met √† jour l'image du drapeau
 
-        // SÈlectionne un index alÈatoire pour la bonne rÈponse parmi les boutons
+        // S√©lectionne un index al√©atoire pour la bonne r√©ponse parmi les boutons
         bonIndex = Random.Range(0, boutonsOptions.Length);
-        List<int> indicesUtilises = new List<int>(); // Liste pour stocker les indices dÈj‡ utilisÈs
+        List<int> indicesUtilises = new List<int>(); // Liste pour stocker les indices d√©j√† utilis√©s
 
         // Parcourt tous les boutons d'options pour les reinitialiser avec des noms de pays
         for (int i = 0; i < boutonsOptions.Length; i++)
         {
             int indexBouton = i; // Capture l'index actuel dans une variable locale
-            boutonsOptions[i].onClick.RemoveAllListeners(); // Supprime tous les anciens auditeurs d'ÈvÈnements
-            boutonsOptions[i].onClick.AddListener(() => Reponse(indexBouton)); // Ajoute un nouvel auditeur d'ÈvÈnements pour vÈrifier la rÈponse
+            boutonsOptions[i].onClick.RemoveAllListeners(); // Supprime tous les anciens auditeurs d'√©v√©nements
+            boutonsOptions[i].onClick.AddListener(() => Reponse(indexBouton)); // Ajoute un nouvel auditeur d'√©v√©nements pour v√©rifier la r√©ponse
 
             // Si le bouton actuel est le bon, affiche le nom correct du pays
             if (i == bonIndex)
@@ -88,25 +89,25 @@ public class JeuDrapeau : MonoBehaviour
                 Sprite mauvaisDrapeau; // Variable pour stocker un mauvais drapeau
                 int indexHasard;
 
-                // Boucle pour trouver un drapeau incorrect qui n'est pas dÈj‡ utilisÈ ‡ afficher comme option au joueur
+                // Boucle pour trouver un drapeau incorrect qui n'est pas d√©j√† utilis√© √† afficher comme option au joueur
                 do
                 {
                     indexHasard = Random.Range(0, listeDrapeaux.Count);
                     mauvaisDrapeau = listeDrapeaux[indexHasard];
                 } while (mauvaisDrapeau.name == listeDrapeaux[indexDrapeau].name || indicesUtilises.Contains(indexHasard));
 
-                // Met ‡ jour le texte du bouton avec le nom du mauvais drapeau
+                // Met √† jour le texte du bouton avec le nom du mauvais drapeau
                 boutonsOptions[i].GetComponentInChildren<Text>().text = ObtenirNomDrapeau(mauvaisDrapeau.name);
-                indicesUtilises.Add(indexHasard); // Ajoute cet index ‡ la liste des indices utilisÈs
+                indicesUtilises.Add(indexHasard); // Ajoute cet index √† la liste des indices utilis√©s
             }
         }
     }
 
 
     /// <summary>
-    /// VÈrifie si la rÈponse sÈlectionnÈe par le joueur est correcte.
+    /// V√©rifie si la r√©ponse s√©lectionn√©e par le joueur est correcte.
     /// </summary>
-    /// <param name="index">Index du bouton sÈlectionnÈ.</param>
+    /// <param name="index">Index du bouton s√©lectionn√©.</param>
     void Reponse(int index)
     {
         if (index == bonIndex)
@@ -118,7 +119,7 @@ public class JeuDrapeau : MonoBehaviour
     }
 
     /// <summary>
-    /// Obtient le nom du drapeau ‡ partir du nom du sprite.
+    /// Obtient le nom du drapeau √† partir du nom du sprite.
     /// </summary>
     /// <param name="nomDrapeau">Nom du sprite du drapeau.</param>
     /// <returns>Le nom du sprite du drapeau.</returns>
@@ -128,10 +129,11 @@ public class JeuDrapeau : MonoBehaviour
     }
 
     /// <summary>
-    /// GËre la fin du jeu lorsque le joueur atteint le score cible.
+    /// G√®re la fin du jeu lorsque le joueur atteint le score cible.
     /// </summary>
     void FinirJeu()
     {
+        PreferencesJoueur.GetSavedInventaire().Add(Inventaire.Items.CLEE_JAUNE);
         PreferencesJoueur.FinirJeuDrapeaux();
         finPartie.gameObject.SetActive(true);
         enTrainDeJouer = false;
@@ -148,7 +150,7 @@ public class JeuDrapeau : MonoBehaviour
     }
 
     /// <summary>
-    /// Permet de quitter le jeu de drapeaux et de retourner ‡ la scËne de jeu.
+    /// Permet de quitter le jeu de drapeaux et de retourner √† la sc√®ne de jeu.
     /// </summary>
     public void Quitter()
     {
