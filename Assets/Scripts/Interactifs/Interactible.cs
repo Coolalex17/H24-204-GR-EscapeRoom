@@ -9,6 +9,10 @@ using UnityEngine;
 /// </summary>
 public interface Interactible
 {
+    /// <summary>
+    /// Les fonctions ici sont appelé lorsque le joueur appuie sur la touche respective. Le transform du joueur pourra etre utilisé si nécessaire pour, par exemple, acceder a l'inventaire
+    /// </summary>
+    /// <param name="Joueur"></param>
     public void InteractionGauche(Transform Joueur);
     public void InteractionDroite(Transform Joueur);
 

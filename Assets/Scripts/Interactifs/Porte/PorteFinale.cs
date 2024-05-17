@@ -16,6 +16,9 @@ public class PorteFinale : MonoBehaviour, Interactible
     public void InteractionDroite(Transform Joueur) {
         //pas utile presentement
     }
+    /// <summary>
+    /// Enlève les cadena qui ont déja été enlevé par le joueur lorsque la scene est chargé
+    /// </summary>
     public void Start() {
         if(CadenaRouge) {
             ImageCadenaRouge.SetActive(false);
@@ -26,8 +29,13 @@ public class PorteFinale : MonoBehaviour, Interactible
         if(CadenaBleu) {
            ImageCadenaBleu.SetActive(false);
         }
+
     }
-    //Load la scène de fin de jeu
+
+    /// <summary>
+    /// enlève les cadenas selon la clee que le joueur pessede
+    /// </summary>
+    /// <param name="Joueur"></param>
     public void InteractionGauche(Transform Joueur) {
         if(Joueur.GetComponent<Inventaire>().EnleverItem(Inventaire.Items.CLEE_BLEU,1)) {
             CadenaBleu = true;
@@ -39,10 +47,8 @@ public class PorteFinale : MonoBehaviour, Interactible
         if (Joueur.GetComponent<Inventaire>().EnleverItem(Inventaire.Items.CLEE_VERTE, 1)) {
             CadenaVert =true;
         }
-        Debug.Log(CadenaVert);
-        Debug.Log(CadenaBleu);
-        Debug.Log(CadenaRouge);
         if(CadenaBleu & CadenaVert & CadenaRouge) {
+            //Affiche le message de félicitations
             ImageFin.SetActive(true);
         }
 
