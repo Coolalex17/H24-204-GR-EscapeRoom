@@ -6,6 +6,7 @@ using static Inventaire;
 
 public class Door : MonoBehaviour, Interactible
 {
+    //Ce Script a été fait par lu qui n'as pas mis de comentaires
     private Animator anim;
     private bool isOpen = false;
     public Inventaire.Items itemRequis;
