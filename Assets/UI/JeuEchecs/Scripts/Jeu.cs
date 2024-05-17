@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class Jeu : MonoBehaviour
 {
+    // Les scripts du jeu d'échecs (Jeu, Piece, GrilleDeplacement et IndiceAnimation) sont
+    // inspirés de la série de tutoriels sur YouTube : https://www.youtube.com/watch?v=lFZeeTZ29w0&list=PL72bFQgYwe2t_T4ha7nJWc0OduWANpqz9
 
     public GameObject pieceDeJeu;
 
@@ -28,6 +30,8 @@ public class Jeu : MonoBehaviour
     void Start()
     {
         nomSceneActuelle = SceneManager.GetActiveScene().name;
+
+        // Générer le prochain puzzle selon l'actuel
 
         switch (nomSceneActuelle)
         {
@@ -52,7 +56,6 @@ public class Jeu : MonoBehaviour
 
         // Remplir tableau des positions de la grille avec les pièces
         
-
         for (int i = 0; i < joueurNoir.Length; i++)
         {
             if (joueurNoir[i] != null) SetPosition(joueurNoir[i]);
@@ -75,6 +78,7 @@ public class Jeu : MonoBehaviour
         }
     }
 
+    //Positions normales d'un jeu d'échecs classique, pour futurs tests
     public void InitialiserJeuDefault()
     {
         // Remplir tableaux des couleurs des joueurs avec leurs pièces
@@ -102,6 +106,7 @@ public class Jeu : MonoBehaviour
         correctMoveEnd = new Vector2Int(2, 2);
     }
 
+    // Initialise le premier casse-tête
     public void InitialiserJeu1()
     {
         Debug.Log("Jeu");
@@ -120,6 +125,7 @@ public class Jeu : MonoBehaviour
         correctMoveEnd = new Vector2Int(3, 7);
     }
 
+    // Initialise le deuxième casse-tête
     public void InitialiserJeu2()
     {
         // Remplir tableaux des couleurs des joueurs avec leurs pièces
@@ -143,6 +149,7 @@ public class Jeu : MonoBehaviour
         correctMoveEnd = new Vector2Int(5, 6);
     }
 
+    // Initialise le troisième casse-tête
     public void InitialiserJeu3()
     {
         // Remplir tableaux des couleurs des joueurs avec leurs pièces
@@ -151,12 +158,12 @@ public class Jeu : MonoBehaviour
             Creer("fou_blanc", 6, 0), Creer("dame_blanc", 1, 0),
             Creer("roi_blanc", 3, 5), Creer("fou_blanc", 6, 1),
             Creer("tour_blanc", 6, 7), Creer("pion_blanc", 3, 1),
-        Creer("cavalier_blanc", 6, 4)};
+            Creer("cavalier_blanc", 6, 4)};
 
         joueurNoir = new GameObject[] {
             Creer("roi_noir", 3, 3), Creer("pion_noir", 7, 2),
             Creer("pion_noir", 0, 6), Creer("pion_noir", 1, 6),
-            Creer("pion_noir", 2, 3), Creer("pion_noir", 3, 2),
+            Creer("fou_noir", 2, 3), Creer("pion_noir", 3, 2),
             Creer("pion_noir", 4, 2), Creer("pion_noir", 5, 6), 
             Creer("pion_noir", 6, 5), Creer("tour_noir", 0, 4) };
 
@@ -164,6 +171,7 @@ public class Jeu : MonoBehaviour
         correctMoveEnd = new Vector2Int(1, 1);
     }
 
+    // Initialise le quatrième casse-tête
     public void InitialiserJeu4()
     {
         // Remplir tableaux des couleurs des joueurs avec leurs pièces
@@ -258,6 +266,7 @@ public class Jeu : MonoBehaviour
         GameObject.FindGameObjectWithTag("TexteContinuer").GetComponent<Text>().enabled = true;
     }
 
+    // Bouge l'écran pour donner l'effet que c'est la mauvaise réponse
     public IEnumerator ShakeScreen(float duration = 0.5f, float magnitude = 0.5f)
     {
         Vector3 originalPos = Camera.main.transform.localPosition;
