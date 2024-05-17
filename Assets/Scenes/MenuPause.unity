@@ -1290,6 +1290,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1446199919}
   - component: {fileID: 1446199920}
+  - component: {fileID: 1446199921}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -1324,6 +1325,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e62db17eddfb914fad1b71f7d8699bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1446199921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446199918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3b6baaac101144f915267a90e1091e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effetsSlider: {fileID: 1722587901458972784, guid: d0be31b9208a8d54cbbcf44b0833e6b8, type: 3}
+  audioSource: {fileID: 1291574846}
 --- !u!1 &1496793503
 GameObject:
   m_ObjectHideFlags: 0

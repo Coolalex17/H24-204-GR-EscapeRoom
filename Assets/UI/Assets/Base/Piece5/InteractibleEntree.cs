@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class InteractibleEntree : MonoBehaviour, Interactible
 {
-    [SerializeField] private CodeOrdinateur ordinateur;
+    [SerializeField] private CodeOrdinateur ordinateur; //Permet l'interaction avec le bouton Entrée de l'ordinateur de l'infirmerie afin d'envoyer la réponse
 
-    public void boutonPresse()
+    public void BoutonPresse()
     {
-        if (!ordinateur.IsReponseTrouvee())
+        if (!ordinateur.IsReponseTrouvee()) // Si la réponse a été trouvée, le joueur ne peut plus interagir avec le bouton Entrée
         {
             ordinateur.Execute();
         }
@@ -21,6 +21,6 @@ public class InteractibleEntree : MonoBehaviour, Interactible
     }
     public void InteractionGauche(Transform Joueur)
     {
-        boutonPresse();
+        BoutonPresse();
     }
 }

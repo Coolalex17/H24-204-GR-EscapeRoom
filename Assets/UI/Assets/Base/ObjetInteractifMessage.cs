@@ -15,7 +15,7 @@ public class ObjetInteractifMessage : MonoBehaviour // ChatGPT
     /// Appelée lorsque le joueur entre en collision avec cet objet interactif.
     /// </summary>
     /// <param name="autre">Le collider avec lequel la collision s'est produite.</param>
-    private void AuDéclenchementDeCollision(Collider autre)
+    private void OnTriggerEnter(Collider autre)
     {
         if (autre.CompareTag("Player")) // S'assure que le Collider autre a le tag "Player".
         {
@@ -27,7 +27,7 @@ public class ObjetInteractifMessage : MonoBehaviour // ChatGPT
     /// Appelée lorsque le joueur sort de la collision avec cet objet interactif.
     /// </summary>
     /// <param name="autre">Le collider avec lequel la collision s'est produite.</param>
-    private void ALaSortieDeCollision(Collider autre)
+    private void OnTriggerExit(Collider autre)
     {
         if (autre.CompareTag("Player"))
         {
