@@ -16,6 +16,7 @@ public partial class Inventaire
         CLEE_ROUGE,
         CLEE_VERTE,
         CLEE_BLEU,
+        CLEE_GRISE,
     }
 
     //est appele pour afficher linventaire du joueur correctement
